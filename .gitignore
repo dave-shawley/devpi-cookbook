@@ -13,6 +13,7 @@
 # Bundler, Berks, etc.
 bin/*
 .bundle/*
+vendor/
 
 # Local override files
 .kitchen.local.yml

@@ -7,6 +7,11 @@ require 'rspec/core/rake_task'
 desc 'Run unit tests'
 RSpec::Core::RakeTask.new 'unit-test'
 
+desc 'Run integration tests'
+task 'integration-test' do
+  sh %q{kitchen test}
+end
+
 desc 'Run style and best practice checks'
 task :lint do
   sh %q{bundle exec knife cookbook test --cookbook-path .. devpi}
@@ -15,6 +20,7 @@ end
 desc 'Remove all generated files'
 task 'maintainer-clean' do
   rmtree 'tmp'
+  rmtree 'vendor'
 end
 
 
