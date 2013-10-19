@@ -14,6 +14,7 @@
 bin/*
 .bundle/*
 vendor/
+rspec_guard_result
 
 # Local override files
 .kitchen.local.yml
