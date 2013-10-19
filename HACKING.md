@@ -95,11 +95,13 @@ simply because they are the ones that I happened to pick up along the way.
 * [rspec][2.3] runs my unit tests
 * [test-kitchen][1.4] runs my integration tests
 * [berkshelf][2.4] manages my cookbook dependencies
+* [tailor][2.5] is used for Ruby style checks
 
 [2.1]: http://rake.rubyforge.org/
 [2.2]: http://acrmp.github.io/foodcritic/
 [2.3]: http://rspec.info/
 [2.4]: http://berkshelf.com/
+[2.5]: http://github.com/turboladen/tailor/
 
 
 # TESTING DURING DEVELOPMENT
@@ -135,3 +137,18 @@ correctly and all of the low-level details are spot on.
 [3.1]: https://github.com/sstephenson/bats
 [3.2]: https://github.com/fnichol
 [3.3]: https://github.com/acrmp/chefspec
+
+
+# DEVELOPMENT PROCESS
+
+The development process that I use with this project is pretty simple.
+
+1. Create a feature branch off of `development` for the new feature.
+2. Update the README to describe the new recipe or changes to the existing
+   recipe.  If there are any obvious attributes, document them now.
+3. Write integration tests that express the default behavior of the feature.
+4. Implement as much of the recipe as is necessary to meet the requirements
+   of the integration test.
+5. Add attributes to make the new recipe configurable and add unit tests
+   that verify the behavior of changing the attributes.
+

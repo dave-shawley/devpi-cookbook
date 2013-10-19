@@ -27,11 +27,19 @@ end
 begin
   require 'foodcritic'
   FoodCritic::Rake::LintTask.new :foodcritic do |t|
-    puts "Running foodcritic check on devpi"
     t.options = {:fail_tags => ['correctness']}
   end
   Rake::Task[:lint].enhance [:foodcritic]
 rescue LoadError
-  puts ">>>>> FoodCritic gem failed to load."
-  puts ">>>>> Lint will not included FC checks."
+  puts '>>>>> FoodCritic gem failed to load.'
+  puts '>>>>> Lint will not included FC checks.'
+end
+
+begin
+  require 'tailor/rake_task'
+  Tailor::RakeTask.new :tailor
+  Rake::Task[:lint].enhance [:tailor]
+rescue LoadError
+  puts '>>>>> Tailor gem failed to load.'
+  puts '>>>>> Lint will not run tailor checks.'
 end
