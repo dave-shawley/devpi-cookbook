@@ -10,6 +10,7 @@ describe 'devpi::server' do
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'python' }
+    it { should upgrade_python_pip 'devpi server' }
   end
 
   context 'python environment' do
@@ -20,6 +21,15 @@ describe 'devpi::server' do
     }
     its(:action) { should include :create }
     its(:path) { should eq '/configured/path' }
+  end
+
+  context 'devpi-server installation' do
+    subject {
+      @chef_run.node.set[:devpiserver][:version] = :configured_version
+      @chef_run.converge described_recipe
+      @chef_run.python_pip 'devpi server'
+    }
+    its(:version) { should eq :configured_version }
   end
 
 end

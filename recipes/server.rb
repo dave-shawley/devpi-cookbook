@@ -23,3 +23,10 @@ python_virtualenv 'devpi environment' do
   path node[:devpiserver][:virtualenv]
   action :create
 end
+
+python_pip 'devpi server' do
+  package_name 'devpi-server'
+  action :upgrade
+  virtualenv '/opt/devpi-server'
+  version node[:devpiserver][:version] if node[:devpiserver].key? :version
+end

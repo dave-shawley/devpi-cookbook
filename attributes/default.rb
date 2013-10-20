@@ -18,3 +18,4 @@
 #
 
 default[:devpiserver][:virtualenv] = '/opt/devpi-server'
+default[:devpiserver][:version] = nil  # install latest

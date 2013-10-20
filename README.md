@@ -23,6 +23,14 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
+    <th><tt>[:devpiserver][:version]</tt></th>
+    <td>String or <tt>nil</tt></td>
+    <td>Install this version of the devpi-server package.
+        Set this attribute to <tt>nil</tt> to install the latest
+        version.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
     <th><tt>[:devpiserver][:virtualenv]</tt></th>
     <td>Path</td>
     <td>Install Python virtual environment here</td>
