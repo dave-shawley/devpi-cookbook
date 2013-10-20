@@ -1,24 +1,20 @@
 devpi Cookbook
 ==============
-TODO: Enter the cookbook description here.
+This cookbook installs and configures a devpi server.  [Devpi][1] is a
+PyPI-compatible Python Index server that acts as both a freestanding
+Python Index as well as a pull-through cache of the official Python 
+Package Index.
 
-e.g.
-This cookbook makes your favorite breakfast sandwhich.
+[1]: http://doc.devpi.net/latest/
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - devpi needs toaster to brown your bagel.
+* **Python Versions**: Python 2.6 amd 2.7
+* **Operating Systems**: Debian/Ubuntu
 
 Attributes
 ----------
-TODO: List you cookbook attributes here.
 
-e.g.
-#### devpi::default
 <table>
   <tr>
     <th>Key</th>
@@ -26,43 +22,61 @@ e.g.
     <th>Description</th>
     <th>Default</th>
   </tr>
+  <!--
   <tr>
     <td><tt>['devpi']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
   </tr>
+  -->
 </table>
 
 Usage
 -----
-#### devpi::default
-TODO: Write usage instructions for each cookbook.
-
-e.g.
-Just include `devpi` in your node's `run_list`:
-
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[devpi]"
-  ]
-}
-```
+#### devpi::server
+Include this recipe in the `run_list` to install the devpi server.
 
 Contributing
 ------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
 
-e.g.
 1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write you change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+2. Create a feature branch named *"feature/my_feature"* from `development`
+3. Edit *README.md* to describe your feature
+4. Write integration tests that verify your feature, run them with `rake integration-test` -- **they should fail**
+5. Implement your feature in its default configuration.  You should not modify anything outside if the recipe at this point.  Keep iterating until the integration tests pass.
+6. Implement unit tests to cover any configuration or platform details.  Add attributes as needed at this point.  Run unit tests with `rake unit-test`.  
+7. Run the static analysis tasks using `rake lint`.  Fix any problems that they find.
+8. Update *README.md* to mention any new attributes and add yourself to the **AUTHORS** list.
+9. Issue a pull-request on Github.
+
+*HACKING.md* contains additional details about developing in this cookbook.
 
 License and Authors
 -------------------
-Authors: TODO: List authors
+#### Cookbook Authors:
+
+* Dave Shawley
+
+#### License:
+
+Copyright (C) 2013 Dave Shawley
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
