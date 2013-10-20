@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: default
+# Recipe:: server
 #
 # Copyright 2013, Dave Shawley
 #

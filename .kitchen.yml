@@ -12,5 +12,5 @@ platforms:
 suites:
 - name: default
   run_list:
-  - "recipe[devpi]"
+  - "recipe[devpi::server]"
   attributes: {}
