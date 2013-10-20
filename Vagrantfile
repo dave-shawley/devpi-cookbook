@@ -11,10 +11,12 @@ Vagrant.configure("2") do |config|
 
   config.berkshelf.berksfile_path = "./Berksfile"
   config.berkshelf.enabled = true
+  config.omnibus.chef_version = '11.6.0'
 
   config.vm.provision :chef_solo do |chef|
     chef.json = {}
     chef.run_list = [
+      "recipe[apt]",
       "recipe[devpi::server]"
     ]
   end
