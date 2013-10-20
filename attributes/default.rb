@@ -20,3 +20,4 @@
 default[:devpiserver][:virtualenv] = '/opt/devpi-server'
 default[:devpiserver][:version] = nil  # install latest
 default[:devpiserver][:daemon_user] = 'devpi'
+default[:devpiserver][:admin_group] = 'devpi'

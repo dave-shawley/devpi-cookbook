@@ -33,6 +33,11 @@ user 'devpi privilege separation user' do
   action :create
 end
 
+group 'devpi administrative group' do
+  group_name node[:devpiserver][:admin_group]
+  members node[:devpiserver][:daemon_user]
+end
+
 python_pip 'devpi server' do
   package_name 'devpi-server'
   action :upgrade

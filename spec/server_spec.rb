@@ -12,6 +12,7 @@ describe 'devpi::server' do
     it { should include_recipe 'python' }
     it { should upgrade_python_pip 'devpi server' }
     it { should create_user 'devpi' }
+    it { should create_group 'devpi' }
   end
 
   context 'python environment' do
@@ -43,6 +44,17 @@ describe 'devpi::server' do
     its(:group) { should eq 'daemon' }
     its(:shell) { should eq '/bin/false' }
     its(:action) { should include :create }
+  end
+
+  context 'devpi administrative group' do
+    subject {
+      @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
+      @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
+      @chef_run.converge described_recipe
+      @chef_run.group 'devpi administrative group'
+    }
+    its(:group_name) { should eq 'configured_group' }
+    its(:members) { should include 'configured_user' }
   end
 
 end

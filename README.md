@@ -23,6 +23,13 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
+    <th><tt>[:devpiserver][:admin_group]</tt></th>
+    <td>String</td>
+    <td>This group can administer the devpi server.  This group
+        will be created if it does not exist.</td>
+    <td>devpi</td>
+  </tr>
+  <tr>
     <th><tt>[:devpiserver][:daemon_user]</tt></th>
     <td>String</td>
     <td>Run the daemon as this user.  This user will be created if
@@ -49,7 +56,7 @@ Usage
 -----
 #### devpi::server
 Include this recipe in the `run_list` to install the devpi server.  It
-will also create the daemon user if necessary.
+will also create the daemon user and administrative group if necessary.
 
 Contributing
 ------------
