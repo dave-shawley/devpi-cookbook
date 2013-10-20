@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: server
+# Attribute Set:: defaults
 #
 # Copyright 2013, Dave Shawley
 #
@@ -17,9 +17,4 @@
 # limitations under the License.
 #
 
-include_recipe 'python'
-
-python_virtualenv 'devpi environment' do
-  path node[:devpiserver][:virtualenv]
-  action :create
-end
+default[:devpiserver][:virtualenv] = '/opt/devpi-server'

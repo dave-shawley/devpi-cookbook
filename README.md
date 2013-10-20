@@ -22,14 +22,12 @@ Attributes
     <th>Description</th>
     <th>Default</th>
   </tr>
-  <!--
   <tr>
-    <td><tt>['devpi']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <th><tt>[:devpiserver][:virtualenv]</tt></th>
+    <td>Path</td>
+    <td>Install Python virtual environment here</td>
+    <td>/opt/devpi-server</td>
   </tr>
-  -->
 </table>
 
 Usage
