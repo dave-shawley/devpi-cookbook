@@ -11,6 +11,7 @@ describe 'devpi::server' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'python' }
     it { should upgrade_python_pip 'devpi server' }
+    it { should create_user 'devpi' }
   end
 
   context 'python environment' do
@@ -30,6 +31,18 @@ describe 'devpi::server' do
       @chef_run.python_pip 'devpi server'
     }
     its(:version) { should eq :configured_version }
+  end
+
+  context 'devpi privilege separation user' do
+    subject {
+      @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
+      @chef_run.converge described_recipe
+      @chef_run.user 'devpi privilege separation user'
+    }
+    its(:username) { should eq 'configured_user' }
+    its(:group) { should eq 'daemon' }
+    its(:shell) { should eq '/bin/false' }
+    its(:action) { should include :create }
   end
 
 end

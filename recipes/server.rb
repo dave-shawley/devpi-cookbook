@@ -24,6 +24,15 @@ python_virtualenv 'devpi environment' do
   action :create
 end
 
+user 'devpi privilege separation user' do
+  username node[:devpiserver][:daemon_user]
+  gid 'daemon'
+  comment 'Devpi-server privilege separation user.'
+  shell '/bin/false'
+  system
+  action :create
+end
+
 python_pip 'devpi server' do
   package_name 'devpi-server'
   action :upgrade
