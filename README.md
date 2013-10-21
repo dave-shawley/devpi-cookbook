@@ -10,7 +10,7 @@ Package Index.
 Requirements
 ------------
 * **Python Versions**: Python 2.6 amd 2.7
-* **Operating Systems**: Debian/Ubuntu
+* **Operating Systems**: Debian/Ubuntu, Enterprise Linux/CentOS
 
 Attributes
 ----------
