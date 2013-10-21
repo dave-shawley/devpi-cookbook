@@ -10,7 +10,7 @@ Package Index.
 Requirements
 ------------
 * **Python Versions**: Python 2.6 amd 2.7
-* **Operating Systems**: Debian/Ubuntu
+* **Operating Systems**: Debian/Ubuntu, Enterprise Linux/CentOS
 
 Attributes
 ----------
@@ -22,20 +22,41 @@ Attributes
     <th>Description</th>
     <th>Default</th>
   </tr>
-  <!--
   <tr>
-    <td><tt>['devpi']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <th><tt>[:devpiserver][:admin_group]</tt></th>
+    <td>String</td>
+    <td>This group can administer the devpi server.  This group
+        will be created if it does not exist.</td>
+    <td>devpi</td>
   </tr>
-  -->
+  <tr>
+    <th><tt>[:devpiserver][:daemon_user]</tt></th>
+    <td>String</td>
+    <td>Run the daemon as this user.  This user will be created if
+        it does not exist.</td>
+    <td>devpi</td>
+  </tr>
+  <tr>
+    <th><tt>[:devpiserver][:version]</tt></th>
+    <td>String or <tt>nil</tt></td>
+    <td>Install this version of the devpi-server package.
+        Set this attribute to <tt>nil</tt> to install the latest
+        version.</td>
+    <td><tt>nil</tt></td>
+  </tr>
+  <tr>
+    <th><tt>[:devpiserver][:virtualenv]</tt></th>
+    <td>Path</td>
+    <td>Install Python virtual environment here</td>
+    <td>/opt/devpi-server</td>
+  </tr>
 </table>
 
 Usage
 -----
 #### devpi::server
-Include this recipe in the `run_list` to install the devpi server.
+Include this recipe in the `run_list` to install the devpi server.  It
+will also create the daemon user and administrative group if necessary.
 
 Contributing
 ------------
@@ -43,11 +64,18 @@ Contributing
 1. Fork the repository on Github
 2. Create a feature branch named *"feature/my_feature"* from `development`
 3. Edit *README.md* to describe your feature
-4. Write integration tests that verify your feature, run them with `rake integration-test` -- **they should fail**
-5. Implement your feature in its default configuration.  You should not modify anything outside if the recipe at this point.  Keep iterating until the integration tests pass.
-6. Implement unit tests to cover any configuration or platform details.  Add attributes as needed at this point.  Run unit tests with `rake unit-test`.  
-7. Run the static analysis tasks using `rake lint`.  Fix any problems that they find.
-8. Update *README.md* to mention any new attributes and add yourself to the **AUTHORS** list.
+4. Write integration tests that verify your feature, run them with
+   `rake integration-test` -- **they should fail**
+5. Implement your feature in its default configuration.  You should not
+   modify anything outside if the recipe at this point.  Keep iterating
+   until the integration tests pass.
+6. Implement unit tests to cover any configuration or platform details.
+   Add attributes as needed at this point.  Run unit tests with `rake
+   unit-test`.  
+7. Run the static analysis tasks using `rake lint`.  Fix any problems that
+   they find.
+8. Update *README.md* to mention any new attributes and add yourself to
+   the **AUTHORS** list.
 9. Issue a pull-request on Github.
 
 *HACKING.md* contains additional details about developing in this cookbook.

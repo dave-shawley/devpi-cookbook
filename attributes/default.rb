@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: default
+# Attribute Set:: defaults
 #
 # Copyright 2013, Dave Shawley
 #
@@ -16,3 +16,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+default[:devpiserver][:virtualenv] = '/opt/devpi-server'
+default[:devpiserver][:version] = nil  # install latest
+default[:devpiserver][:daemon_user] = 'devpi'
+default[:devpiserver][:admin_group] = 'devpi'

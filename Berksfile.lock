@@ -1,7 +1,19 @@
 {
   "sources": {
+    "apt": {
+      "locked_version": "2.2.1"
+    },
     "devpi": {
       "path": "."
+    },
+    "python": {
+      "locked_version": "1.4.0"
+    },
+    "build-essential": {
+      "locked_version": "1.4.2"
+    },
+    "yum": {
+      "locked_version": "2.3.2"
     }
   }
 }
