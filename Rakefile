@@ -5,7 +5,12 @@ require 'rspec/core/rake_task'
 
 
 desc 'Run unit tests'
-RSpec::Core::RakeTask.new 'unit-test'
+task 'unit-test' do
+  RSpec::Core::RakeTask.new :t
+  Rake::Task[:t].invoke
+  rmtree 'vendor'
+end
+
 
 desc 'Run integration tests'
 task 'integration-test' do
