@@ -37,6 +37,12 @@ Attributes
     <td>/opt/devpi-server/data</td>
   </tr>
   <tr>
+    <th><tt>[:devpiserver][:server_port]</tt></th>
+    <td>Integer</td>
+    <td>Port number that the server will listen on.</td>
+    <td>3141</td>
+  </tr>
+  <tr>
     <th><tt>[:devpiserver][:daemon_user]</tt></th>
     <td>String</td>
     <td>Run the daemon as this user.  This user will be created if

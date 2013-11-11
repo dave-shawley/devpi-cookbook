@@ -1,3 +1,3 @@
-@test "server is listened on localhost" {
-	wget http://localhost:8000/
+@test "server is listening on localhost" {
+	wget http://localhost:3141/
 }

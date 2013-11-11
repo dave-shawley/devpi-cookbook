@@ -10,6 +10,7 @@
 	test -e $conf_file
 	grep -q 'command=/opt/devpi-server/bin/devpi-server' $conf_file
 	grep -q 'command=.* --serverdir /opt/devpi-server/data' $conf_file
+	grep -q 'command=.* --port 3141' $conf_file
 	grep -q 'autostart=true' $conf_file
 	grep -q 'autorestart=true' $conf_file
 	grep -q 'user=devpi' $conf_file
