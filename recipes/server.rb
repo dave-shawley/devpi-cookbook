@@ -27,6 +27,7 @@ end
 user 'devpi privilege separation user' do
   username node[:devpiserver][:daemon_user]
   gid 'daemon'
+  home node[:devpiserver][:virtualenv]
   comment 'Devpi-server privilege separation user.'
   shell '/bin/false'
   system
