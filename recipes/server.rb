@@ -45,3 +45,11 @@ python_pip 'devpi server' do
   virtualenv '/opt/devpi-server'
   version node[:devpiserver][:version] if node[:devpiserver].key? :version
 end
+
+directory 'devpi server directory' do
+  action :create
+  path node[:devpiserver][:server_root]
+  owner node[:devpiserver][:daemon_user]
+  group node[:devpiserver][:admin_group]
+  mode 00770
+end

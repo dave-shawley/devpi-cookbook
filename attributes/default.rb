@@ -18,6 +18,7 @@
 #
 
 default[:devpiserver][:virtualenv] = '/opt/devpi-server'
+default[:devpiserver][:server_root] = '/opt/devpi-server/data'
 default[:devpiserver][:version] = nil  # install latest
 default[:devpiserver][:daemon_user] = 'devpi'
 default[:devpiserver][:admin_group] = 'devpi'

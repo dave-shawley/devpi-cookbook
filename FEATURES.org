@@ -15,7 +15,7 @@ this file is -- /a list of things that need do'ing/.
   [X] admin group is configurable
   [ ] supervisor recipe - controls service using supervisor
     [ ] server port configurable
-    [ ] server root configurable
+    [X] server root configurable
   [ ] runit recipe - controls service using runit
     [ ] server port configurable
     [ ] server root configurable

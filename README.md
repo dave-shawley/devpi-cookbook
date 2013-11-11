@@ -30,6 +30,13 @@ Attributes
     <td>devpi</td>
   </tr>
   <tr>
+    <th><tt>[:devpiserver][:server_root]</tt></th>
+    <td>String</td>
+    <td>Store server data in this directory.  This directory will be
+        created if it does not exist.</td>
+    <td>/opt/devpi-server/data</td>
+  </tr>
+  <tr>
     <th><tt>[:devpiserver][:daemon_user]</tt></th>
     <td>String</td>
     <td>Run the daemon as this user.  This user will be created if
