@@ -3,6 +3,9 @@
     "apt": {
       "locked_version": "2.2.1"
     },
+    "runit": {
+      "locked_version": "1.4.0"
+    },
     "supervisor": {
       "locked_version": "0.4.8"
     },
@@ -12,14 +15,14 @@
     "devpi": {
       "path": "."
     },
-    "python": {
-      "locked_version": "1.4.0"
-    },
     "build-essential": {
       "locked_version": "1.4.2"
     },
     "yum": {
       "locked_version": "2.3.2"
+    },
+    "python": {
+      "locked_version": "1.4.0"
     }
   }
 }
