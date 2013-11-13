@@ -9,6 +9,7 @@ describe 'devpi::runit' do
 
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
+    it { should include_recipe 'runit' }
   end
 
 end

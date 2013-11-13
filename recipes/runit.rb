@@ -16,3 +16,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+
+include_recipe 'runit'
+
+runit_service 'devpi-server' do
+  owner 'root'
+  group 'devpi'
+  log true
+  default_logger true
+end

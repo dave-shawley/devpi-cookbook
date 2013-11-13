@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# RUnit service script installed by last Chef run.
+#
+
+exec 2>&1
+exec chpst -u devpi -0 /opt/devpi-server/bin/devpi-server --port 3141 --serverdir /opt/devpi-server/data
