@@ -1,6 +1,7 @@
 site :opscode
 
 cookbook 'apt'
+cookbook 'runit'
 cookbook 'supervisor'
 
 group :testing do

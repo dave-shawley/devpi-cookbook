@@ -72,8 +72,17 @@ Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
 #### devpi::supervisor
-Include this recipe to manage the devpi server using supervisor.  It will
-install supervisor globally if necessary and add the devpi server job.
+Include this recipe to manage the devpi server using [supervisor][2].
+It will install supervisor globally if necessary and add the devpi server
+job.
+
+#### devpi::runit
+Include this recipe to manage the devpi server using a [runit][3] script.
+It will install runit globally if necessary and configure a devpi server
+job.
+
+[2]: http://supervisord.org/
+[3]: http://smarden.org/runit/
 
 Contributing
 ------------
