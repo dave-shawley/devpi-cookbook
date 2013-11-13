@@ -21,7 +21,7 @@ include_recipe 'runit'
 
 runit_service 'devpi-server' do
   owner 'root'
-  group 'devpi'
+  group node[:devpiserver][:admin_group]
   log true
   default_logger true
 end

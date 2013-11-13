@@ -15,10 +15,10 @@
 
 @test "devpi-server job parameters are set" {
 	config_line=$(grep '^exec chpst' /etc/service/devpi-server/run)
-	echo $config_line | grep -- 'exec chpst -u devpi '
-	echo $config_line | grep -- '/opt/devpi-server/bin/devpi-server '
-	echo $config_line | grep -- '--port 3141 '
-	echo $config_line | grep -- '--serverdir /opt/devpi-server/data'
+	echo $config_line | grep -- 'exec chpst .* -u devpi '
+	echo $config_line | grep -- '"/opt/devpi-server/bin/devpi-server"'
+	echo $config_line | grep -- '--port 3141[^0-9]'
+	echo $config_line | grep -- '--serverdir "/opt/devpi-server/data"'
 }
 
 @test "devpi-server job is running" {

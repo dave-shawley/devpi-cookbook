@@ -12,4 +12,14 @@ describe 'devpi::runit' do
     it { should include_recipe 'runit' }
   end
 
+  context 'runit service configuration' do
+    subject {
+      @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
+      @chef_run.converge described_recipe
+      @chef_run.find_resource 'runit_service', 'devpi-server'
+    }
+    its(:owner) { should eq 'root' }
+    its(:group) { should eq 'configured_group' }
+  end
+
 end

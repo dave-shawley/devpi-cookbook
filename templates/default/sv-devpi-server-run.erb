@@ -4,4 +4,4 @@
 #
 
 exec 2>&1
-exec chpst -u devpi -0 /opt/devpi-server/bin/devpi-server --port 3141 --serverdir /opt/devpi-server/data
+exec chpst -0 -u <%= node[:devpiserver][:daemon_user] %> "<%= node[:devpiserver][:virtualenv] %>/bin/devpi-server" --port <%= node[:devpiserver][:server_port] %> --serverdir "<%= node[:devpiserver][:server_root] %>"
