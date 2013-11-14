@@ -13,3 +13,4 @@ depends 'supervisor'
 end
 
 recipe 'devpi::server', 'Installs the devpi-server package.'
+recipe 'devpi::supervisor', 'Manage the devpi-server daemon with supervisord.'
