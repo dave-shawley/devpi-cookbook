@@ -33,15 +33,15 @@ end
 Tailor.config do |config|
   config.formatters 'text'
 
-  config.file_set 'recipes/**/*.rb' do |style|
+  config.file_set 'recipes/**/*.rb', :recipes do |style|
     apply_standard_configuration style
   end
 
-  config.file_set 'spec/**/*.rb' do |style|
+  config.file_set 'spec/**/*.rb', :rspec do |style|
     apply_standard_configuration style
   end
 
-  config.file_set 'attributes/**/*.rb' do |style|
+  config.file_set 'attributes/**/*.rb', :attributes do |style|
     apply_standard_configuration style
     style.max_line_length 100
   end

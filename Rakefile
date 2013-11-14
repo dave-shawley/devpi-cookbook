@@ -19,8 +19,12 @@ end
 
 desc 'Remove all generated files'
 task 'maintainer-clean' do
+  sh %q{vagrant destroy -f}
+  sh %q{kitchen destroy all --parallel}
   rmtree 'tmp'
   rmtree 'vendor'
+  rmtree '.kitchen'
+  rmtree '.vagrant'
 end
 
 
