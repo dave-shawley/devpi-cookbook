@@ -74,6 +74,8 @@ will also create the daemon user and administrative group if necessary.
 #### devpi::supervisor
 Include this recipe to manage the devpi server using supervisor.  It will
 install supervisor globally if necessary and add the devpi server job.
+This recipe assumes that the *server* recipe is already present in the run
+list.
 
 Contributing
 ------------
