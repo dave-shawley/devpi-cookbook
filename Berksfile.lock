@@ -3,6 +3,12 @@
     "apt": {
       "locked_version": "2.2.1"
     },
+    "supervisor": {
+      "locked_version": "0.4.8"
+    },
+    "supervisor-daemon": {
+      "path": "./test/cookbooks/supervisor-daemon"
+    },
     "devpi": {
       "path": "."
     },

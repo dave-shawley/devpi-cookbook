@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Attribute Set:: defaults
+# Recipe:: supervisor
 #
 # Copyright 2013, Dave Shawley
 #
@@ -17,9 +17,12 @@
 # limitations under the License.
 #
 
-default[:devpiserver][:virtualenv] = '/opt/devpi-server'
-default[:devpiserver][:server_root] = '/opt/devpi-server/data'
-default[:devpiserver][:server_port] = 3141
-default[:devpiserver][:version] = nil  # install latest
-default[:devpiserver][:daemon_user] = 'devpi'
-default[:devpiserver][:admin_group] = 'devpi'
+include_recipe 'supervisor'
+
+supervisor_service 'devpi-server' do
+  action :enable
+  command("#{node[:devpiserver][:virtualenv]}/bin/devpi-server" +
+    " --port #{node[:devpiserver][:server_port]}" +
+    " --serverdir #{node[:devpiserver][:server_root]}")
+  user node[:devpiserver][:daemon_user]
+end

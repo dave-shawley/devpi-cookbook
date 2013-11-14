@@ -1,0 +1,29 @@
+#+TITLE: Cookbook Features
+
+This file tracks features that this cookbook implements.  It is an
+orgmode formatted file (see [[http://orgmode.org/]].  If you are an
+emacs user, then this is right up your alley.  I'm not, but there is
+a pretty nice Sublime Text plug-in for it and the format is very nice
+for keeping track of TODO lists and what not.  That is precisely what
+this file is -- /a list of things that need do'ing/.
+
+* Version 1.0 ([6/8])
+  [X] devpi-server is installed into virtual environment
+  [X] virtual environment location is configurable
+  [X] devpi-server version is configurable
+  [X] daemon user is configurable
+  [X] admin group is configurable
+  [X] supervisor recipe - controls service using supervisor
+    [X] server port configurable
+    [X] server root configurable
+  [ ] runit recipe - controls service using runit
+    [ ] server port configurable
+    [ ] server root configurable
+  [ ] nginx recipe - expose devpi-server via nginx
+
+* Version 1.1 ([0/5])
+  [ ] devpi client recipe - only install the client
+  [ ] user LWRP
+  [ ] index LWRP
+  [ ] import LWRP
+  [ ] export LWRP

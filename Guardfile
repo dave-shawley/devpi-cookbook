@@ -1,3 +1,5 @@
+ignore %r{^\.}
+
 guard :rspec do
   watch(%r{metadata\.rb}) { "spec" }
   watch(%r{^attributes/.+\.rb$}) { "spec" }

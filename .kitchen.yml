@@ -20,3 +20,9 @@ suites:
   run_list:
   - "recipe[devpi::server]"
   attributes: {}
+- name: supervisor
+  run_list:
+  - "recipe[supervisor-daemon::install]"
+  - "recipe[devpi::server]"
+  - "recipe[devpi::supervisor]"
+  attributes: {}
