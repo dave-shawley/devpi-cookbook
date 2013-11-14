@@ -3,6 +3,11 @@ devpi CHANGELOG
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+0.2.0
+-----
+Create the *supervisor* recipe that manages the server daemon using the
+supervisord package.
+
 0.1.0
 -----
 Initial release of the devpi cookbook.  The *server* recipe will create
