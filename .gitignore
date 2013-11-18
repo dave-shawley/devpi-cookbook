@@ -1,6 +1,7 @@
 # Runtime cache files
 .kitchen/
 .vagrant/
+metadata.json
 
 # Editor temporary files
 *~
