@@ -82,8 +82,13 @@ Include this recipe to manage the devpi server using a [runit][3] script.
 It will install runit globally if necessary and configure a devpi server
 job.
 
+#### devpi::nginx
+Include this recipe to expose the devpi-server using [nginx][4] as a
+front-end server.
+
 [2]: http://supervisord.org/
 [3]: http://smarden.org/runit/
+[4]: http://nginx.org/
 
 Contributing
 ------------
