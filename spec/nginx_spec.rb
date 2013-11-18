@@ -43,4 +43,12 @@ describe 'devpi::nginx' do
     it { should_not be_nil }
     it { should notify 'service[nginx]', :start }
   end
+
+  context 'when nginx dir is /foo' do
+    subject {
+      @chef_run.node.set[:nginx][:dir] = '/foo'
+      @chef_run.converge described_recipe
+    }
+    it { should create_file '/foo/sites-available/devpi-server' }
+  end
 end
