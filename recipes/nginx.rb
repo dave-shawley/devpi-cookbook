@@ -22,3 +22,12 @@ include_recipe 'nginx::package'
 nginx_site 'default' do
   enable false
 end
+
+template '/etc/nginx/sites-available/devpi-server' do
+  source 'nginx-config.erb'
+  notifies :start, 'service[nginx]'
+end
+
+nginx_site 'devpi-server' do
+  enable true
+end
