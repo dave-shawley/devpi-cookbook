@@ -27,12 +27,10 @@ suites:
   attributes: {}
 - name: runit
   run_list:
-  - "recipe[devpi::server]"
   - "recipe[devpi::runit]"
   attributes: {}
 - name: nginx
   run_list:
-  - "recipe[devpi::server]"
   - "recipe[devpi::runit]"
   - "recipe[devpi::nginx]"
   attributes: {}
