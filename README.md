@@ -67,6 +67,23 @@ Attributes
 
 Usage
 -----
+Include recipes from this cookbook to install the [devpi server][1] as
+a daemon and, optionally, expose the server via an nginx endpoint.  This
+cookbook supports a few different use cases.
+
+1. Install devpi without additional support.
+2. Manage devpi with either supervisor or runit.
+3. Expose an installed devpi instance using nginx.
+
+The first use case is easy, add the [devpi::server](#devpiserver) recipe
+to your `run_list`.  The second use case is simple as well.  Include the
+appropriate recipe and it will install devpi and configure it to run in
+the chosen environment.  The final use case requires that you choose how
+you want devpi to run by selecting one of the other recipes and adding it
+to the node's `run_list` **before** you include [devpi::nginx](#devpinginx).
+
+### Recipes
+
 #### devpi::server
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
