@@ -38,7 +38,8 @@ describe 'devpi::nginx' do
   context 'devpi-server site template' do
     subject {
       @chef_run.converge described_recipe
-      @chef_run.find_resource 'template', '/etc/nginx/sites-available/devpi-server'
+      @chef_run.find_resource(
+        'template', '/etc/nginx/sites-available/devpi-server')
     }
     it { should_not be_nil }
     it { should notify 'service[nginx]', :start }
