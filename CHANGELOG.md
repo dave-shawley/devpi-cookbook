@@ -3,6 +3,14 @@ devpi CHANGELOG
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+1.0.0
+-----
+- Add the *runit* recipe that manages the server daemon using the runit
+  package.
+- Add the *nginx* recipe which installs an nginx site to front end the running
+  daemon.
+- Change daemonizing recipes to include *server* by default.
+
 0.2.0
 -----
 Create the *supervisor* recipe that manages the server daemon using the
