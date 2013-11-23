@@ -23,7 +23,6 @@ suites:
 - name: supervisor
   run_list:
   - "recipe[supervisor-daemon::install]"
-  - "recipe[devpi::server]"
   - "recipe[devpi::supervisor]"
   attributes: {}
 - name: runit
