@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: supervisor
+# Recipe:: runit
 #
 # Copyright 2013, Dave Shawley
 #
@@ -17,13 +17,12 @@
 # limitations under the License.
 #
 
-include_recipe 'supervisor'
+include_recipe 'runit'
 include_recipe 'devpi::server'
 
-supervisor_service 'devpi-server' do
-  action :enable
-  command("#{node[:devpiserver][:virtualenv]}/bin/devpi-server" +
-    " --port #{node[:devpiserver][:server_port]}" +
-    " --serverdir #{node[:devpiserver][:server_root]}")
-  user node[:devpiserver][:daemon_user]
+runit_service 'devpi-server' do
+  owner 'root'
+  group node[:devpiserver][:admin_group]
+  log true
+  default_logger true
 end

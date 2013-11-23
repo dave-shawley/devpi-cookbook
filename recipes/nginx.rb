@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: supervisor
+# Recipe:: nginx
 #
 # Copyright 2013, Dave Shawley
 #
@@ -17,13 +17,17 @@
 # limitations under the License.
 #
 
-include_recipe 'supervisor'
-include_recipe 'devpi::server'
+include_recipe 'nginx::package'
 
-supervisor_service 'devpi-server' do
-  action :enable
-  command("#{node[:devpiserver][:virtualenv]}/bin/devpi-server" +
-    " --port #{node[:devpiserver][:server_port]}" +
-    " --serverdir #{node[:devpiserver][:server_root]}")
-  user node[:devpiserver][:daemon_user]
+nginx_site 'default' do
+  enable false
+end
+
+template "#{node[:nginx][:dir]}/sites-available/devpi-server" do
+  source 'nginx-config.erb'
+  notifies :start, 'service[nginx]'
+end
+
+nginx_site 'devpi-server' do
+  enable true
 end

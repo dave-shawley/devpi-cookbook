@@ -7,7 +7,7 @@ a pretty nice Sublime Text plug-in for it and the format is very nice
 for keeping track of TODO lists and what not.  That is precisely what
 this file is -- /a list of things that need do'ing/.
 
-* Version 1.0 ([6/8])
+* Version 1.0 ([8/8])
   [X] devpi-server is installed into virtual environment
   [X] virtual environment location is configurable
   [X] devpi-server version is configurable
@@ -16,10 +16,10 @@ this file is -- /a list of things that need do'ing/.
   [X] supervisor recipe - controls service using supervisor
     [X] server port configurable
     [X] server root configurable
-  [ ] runit recipe - controls service using runit
-    [ ] server port configurable
-    [ ] server root configurable
-  [ ] nginx recipe - expose devpi-server via nginx
+  [X] runit recipe - controls service using runit
+    [X] server port configurable
+    [X] server root configurable
+  [X] nginx recipe - expose devpi-server via nginx
 
 * Version 1.1 ([0/5])
   [ ] devpi client recipe - only install the client

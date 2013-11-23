@@ -10,6 +10,7 @@ describe 'devpi::supervisor' do
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'supervisor' }
+    it { should include_recipe 'devpi::server' }
   end
 
   context 'supervisor service' do

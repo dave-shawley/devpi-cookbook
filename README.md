@@ -67,15 +67,45 @@ Attributes
 
 Usage
 -----
+Include recipes from this cookbook to install the [devpi server][1] as
+a daemon and, optionally, expose the server via an nginx endpoint.  This
+cookbook supports a few different use cases.
+
+1. Install devpi without additional support.
+2. Manage devpi with either supervisor or runit.
+3. Expose an installed devpi instance using nginx.
+
+The first use case is easy, add the [devpi::server](#devpiserver) recipe
+to your `run_list`.  The second use case is simple as well.  Include the
+appropriate recipe and it will install devpi and configure it to run in
+the chosen environment.  The final use case requires that you choose how
+you want devpi to run by selecting one of the other recipes and adding it
+to the node's `run_list` **before** you include [devpi::nginx](#devpinginx).
+
+### Recipes
+
 #### devpi::server
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
 #### devpi::supervisor
-Include this recipe to manage the devpi server using supervisor.  It will
-install supervisor globally if necessary and add the devpi server job.
-This recipe assumes that the *server* recipe is already present in the run
-list.
+Include this recipe to manage the devpi server using [supervisor][2].
+It will install supervisor globally if necessary and add the devpi server
+job.  This recipe assumes that the *server* recipe is already present in
+the run list.
+
+#### devpi::runit
+Include this recipe to manage the devpi server using a [runit][3] script.
+It will install runit globally if necessary and configure a devpi server
+job.
+
+#### devpi::nginx
+Include this recipe to expose the devpi-server using [nginx][4] as a
+front-end server.
+
+[2]: http://supervisord.org/
+[3]: http://smarden.org/runit/
+[4]: http://nginx.org/
 
 Contributing
 ------------

@@ -1,6 +1,8 @@
 site :opscode
 
 cookbook 'apt'
+cookbook 'nginx'
+cookbook 'runit'
 cookbook 'supervisor'
 
 group :testing do
