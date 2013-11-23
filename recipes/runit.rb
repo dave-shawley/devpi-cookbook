@@ -18,6 +18,7 @@
 #
 
 include_recipe 'runit'
+include_recipe 'devpi::server'
 
 runit_service 'devpi-server' do
   owner 'root'

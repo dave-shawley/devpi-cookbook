@@ -18,6 +18,7 @@
 #
 
 include_recipe 'supervisor'
+include_recipe 'devpi::server'
 
 supervisor_service 'devpi-server' do
   action :enable

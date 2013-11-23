@@ -10,6 +10,7 @@ describe 'devpi::runit' do
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'runit' }
+    it { should include_recipe 'devpi::server' }
   end
 
   context 'runit service configuration' do
