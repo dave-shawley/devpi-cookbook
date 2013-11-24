@@ -46,7 +46,7 @@ python_pip 'devpi-server' do
   version node[:devpiserver][:version] if node[:devpiserver].key? :version
 end
 
-directory 'devpi server directory' do
+directory 'devpi-server directory' do
   action :create
   path node[:devpiserver][:server_root]
   owner node[:devpiserver][:daemon_user]
