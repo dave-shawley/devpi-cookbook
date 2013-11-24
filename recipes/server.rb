@@ -39,14 +39,14 @@ group 'devpi administrative group' do
   members node[:devpiserver][:daemon_user]
 end
 
-python_pip 'devpi server' do
+python_pip 'devpi-server' do
   package_name 'devpi-server'
   action :upgrade
   virtualenv '/opt/devpi-server'
   version node[:devpiserver][:version] if node[:devpiserver].key? :version
 end
 
-directory 'devpi server directory' do
+directory 'devpi-server directory' do
   action :create
   path node[:devpiserver][:server_root]
   owner node[:devpiserver][:daemon_user]
