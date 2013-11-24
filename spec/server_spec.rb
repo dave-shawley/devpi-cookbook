@@ -10,7 +10,7 @@ describe 'devpi::server' do
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'python' }
-    it { should upgrade_python_pip 'devpi server' }
+    it { should upgrade_python_pip 'devpi-server' }
     it { should create_user 'devpi' }
     it { should create_group 'devpi' }
     it { should create_directory '/opt/devpi-server/data' }
@@ -30,7 +30,7 @@ describe 'devpi::server' do
     subject {
       @chef_run.node.set[:devpiserver][:version] = :configured_version
       @chef_run.converge described_recipe
-      @chef_run.python_pip 'devpi server'
+      @chef_run.python_pip 'devpi-server'
     }
     its(:version) { should eq :configured_version }
   end

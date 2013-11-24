@@ -39,7 +39,7 @@ group 'devpi administrative group' do
   members node[:devpiserver][:daemon_user]
 end
 
-python_pip 'devpi server' do
+python_pip 'devpi-server' do
   package_name 'devpi-server'
   action :upgrade
   virtualenv '/opt/devpi-server'
