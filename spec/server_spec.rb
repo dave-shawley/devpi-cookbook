@@ -10,7 +10,7 @@ describe 'devpi::server' do
   context 'recipe' do
     subject { @chef_run.converge described_recipe }
     it { should include_recipe 'python' }
-    it { should upgrade_python_pip 'devpi server' }
+    it { should upgrade_python_pip 'devpi-server' }
     it { should create_user 'devpi' }
     it { should create_group 'devpi' }
     it { should create_directory '/opt/devpi-server/data' }
@@ -30,7 +30,7 @@ describe 'devpi::server' do
     subject {
       @chef_run.node.set[:devpiserver][:version] = :configured_version
       @chef_run.converge described_recipe
-      @chef_run.python_pip 'devpi server'
+      @chef_run.python_pip 'devpi-server'
     }
     its(:version) { should eq :configured_version }
   end
@@ -60,14 +60,14 @@ describe 'devpi::server' do
     its(:members) { should include 'configured_user' }
   end
 
-  context 'devpi server directory' do
+  context 'devpi-server directory' do
     subject {
       @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
       @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
       @chef_run.node.set[:devpiserver][:virtualenv] = '/virtual/env'
       @chef_run.node.set[:devpiserver][:server_root] = '/server/root'
       @chef_run.converge described_recipe
-      @chef_run.directory 'devpi server directory'
+      @chef_run.directory 'devpi-server directory'
     }
     its(:path) { should eq '/server/root' }
     its(:owner) { should eq 'configured_user' }

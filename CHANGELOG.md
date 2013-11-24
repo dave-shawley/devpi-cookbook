@@ -3,6 +3,12 @@ devpi CHANGELOG
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+1.0.1
+-----
+- [devpi-cookbook#1](https://github.com/dave-shawley/devpi-cookbook/pull/1):
+  Renamed two Chef resources.  Resource names should consistently use
+  "devpi-server" instead of "devpi server".
+
 1.0.0
 -----
 - Add the *runit* recipe that manages the server daemon using the runit
