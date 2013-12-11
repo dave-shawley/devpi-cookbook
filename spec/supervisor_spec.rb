@@ -1,10 +1,9 @@
-require 'chefspec'
 require 'spec_helper'
-
 
 describe 'devpi::supervisor' do
   before(:each) do
-    @chef_run = ChefSpec::ChefRunner.new
+    @chef_run = ChefSpec::Runner.new
+    stub_command("/usr/bin/python -c 'import setuptools'").and_return true
   end
 
   context 'recipe' do
