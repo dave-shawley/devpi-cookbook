@@ -1,10 +1,9 @@
-require 'chefspec'
 require 'spec_helper'
-
 
 describe 'devpi::server' do
   before(:each) do
-    @chef_run = ChefSpec::ChefRunner.new
+    @chef_run = ChefSpec::Runner.new
+    stub_command("/usr/bin/python -c 'import setuptools'").and_return true
   end
 
   context 'recipe' do
@@ -14,14 +13,16 @@ describe 'devpi::server' do
     it { should create_user 'devpi' }
     it { should create_group 'devpi' }
     it { should create_directory '/opt/devpi-server/data' }
+    it { should create_python_virtualenv 'devpi environment' }
   end
 
   context 'python environment' do
     subject {
       @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
       @chef_run.converge described_recipe
-      @chef_run.python_virtualenv 'devpi environment'
+      @chef_run.find_resource 'python_virtualenv', 'devpi environment'
     }
+    it { should_not be_nil }
     its(:action) { should include :create }
     its(:path) { should eq '/configured/path' }
   end
@@ -30,7 +31,7 @@ describe 'devpi::server' do
     subject {
       @chef_run.node.set[:devpiserver][:version] = :configured_version
       @chef_run.converge described_recipe
-      @chef_run.python_pip 'devpi-server'
+      @chef_run.find_resource 'python_pip', 'devpi-server'
     }
     its(:version) { should eq :configured_version }
   end
