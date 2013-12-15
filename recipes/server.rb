@@ -42,7 +42,7 @@ end
 python_pip 'devpi-server' do
   package_name 'devpi-server'
   action :upgrade
-  virtualenv '/opt/devpi-server'
+  virtualenv node[:devpiserver][:virtualenv]
   version node[:devpiserver][:version] if node[:devpiserver].key? :version
 end
 

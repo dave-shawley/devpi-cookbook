@@ -30,10 +30,12 @@ describe 'devpi::server' do
   context 'devpi-server installation' do
     subject {
       @chef_run.node.set[:devpiserver][:version] = :configured_version
+      @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
       @chef_run.converge described_recipe
       @chef_run.find_resource 'python_pip', 'devpi-server'
     }
     its(:version) { should eq :configured_version }
+    its(:virtualenv) { should eq '/configured/path' }
   end
 
   context 'devpi privilege separation user' do
