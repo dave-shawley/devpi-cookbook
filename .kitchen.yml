@@ -16,20 +16,13 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
 
 suites:
-- name: default
-  run_list:
-  - "recipe[devpi::server]"
-  attributes: {}
 - name: supervisor
   run_list:
   - "recipe[supervisor-daemon::install]"
   - "recipe[devpi::supervisor]"
+  - "recipe[devpi::nginx]"
   attributes: {}
 - name: runit
-  run_list:
-  - "recipe[devpi::runit]"
-  attributes: {}
-- name: nginx
   run_list:
   - "recipe[devpi::runit]"
   - "recipe[devpi::nginx]"
