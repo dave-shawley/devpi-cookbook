@@ -9,3 +9,6 @@
 	pid=$(ps -A -opid,command | awk '$2 ~ /^nginx/ {print $1}')
 	test -n "$pid"
 }
+@test "nginx log directory exists" {
+	test -d /var/log/devpi-server
+}

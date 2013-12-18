@@ -5,6 +5,8 @@ This file is used to list changes made in each version of the devpi cookbook.
 
 1.0.2
 -----
+- [devpi-cookbook#2](https://github.com/dave-shawley/devpi-cookbook/pull/2):
+  The *nginx* recipe was not creating the nginx log directory.
 
 1.0.1
 -----
