@@ -17,3 +17,4 @@ end
 recipe 'devpi::server', 'Installs the devpi-server package.'
 recipe 'devpi::supervisor', 'Manage the devpi-server daemon with supervisord.'
 recipe 'devpi::nginx', 'Configure nginx as an HTTP front-end.'
+recipe 'devpi::client', 'Install the devpi-client package.'

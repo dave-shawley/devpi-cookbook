@@ -27,3 +27,7 @@ suites:
   - "recipe[devpi::runit]"
   - "recipe[devpi::nginx]"
   attributes: {}
+- name: client
+  run_list:
+  - "recipe[devpi::client]"
+  attributes: {}
