@@ -1,26 +1,11 @@
-@test "runit is installed" {
-	PATH=$PATH:/sbin:/usr/sbin:/usr/local/sbin:/opt/local/sbin
-	PATH=$PATH:/bin:/usr/bin:/usr/local/bin:/opt/local/bin
-	test -n "$(which sv)"
-	test -n "$(which runsvdir)"
-	test -d /etc/service
+@test "nginx is installed" {
+	PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+	test -n "$(which nginx)"
 }
-
-@test "devpi-server job is installed" {
-	test -d /etc/service/devpi-server
-	test -d /etc/service/devpi-server/log
-	test -d /etc/service/devpi-server/supervise
-	test -x /etc/service/devpi-server/run
+@test "default site is disabled" {
+	test ! -e /etc/nginx/sites-enabled/default
 }
-
-@test "devpi-server job parameters are set" {
-	config_line=$(grep '^exec chpst' /etc/service/devpi-server/run)
-	echo $config_line | grep -- 'exec chpst .* -u devpi '
-	echo $config_line | grep -- '"/opt/devpi-server/bin/devpi-server"'
-	echo $config_line | grep -- '--port 3141[^0-9]'
-	echo $config_line | grep -- '--serverdir "/opt/devpi-server/data"'
-}
-
-@test "devpi-server job is running" {
-	/etc/init.d/devpi-server status | grep '^run: '
+@test "nginx is running" {
+	pid=$(ps -A -opid,command | awk '$2 ~ /^nginx/ {print $1}')
+	test -n "$pid"
 }

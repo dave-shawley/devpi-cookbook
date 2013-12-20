@@ -21,8 +21,8 @@ this file is -- /a list of things that need do'ing/.
     [X] server root configurable
   [X] nginx recipe - expose devpi-server via nginx
 
-* Version 1.1 ([0/5])
-  [ ] devpi client recipe - only install the client
+* Version 1.1 ([1/5])
+  [X] devpi client recipe - only install the client
   [ ] user LWRP
   [ ] index LWRP
   [ ] import LWRP

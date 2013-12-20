@@ -82,6 +82,11 @@ the chosen environment.  The final use case requires that you choose how
 you want devpi to run by selecting one of the other recipes and adding it
 to the node's `run_list` **before** you include [devpi::nginx](#devpinginx).
 
+The other use case that this cookbook supports is installing and managing
+a devpi-server installation.  The [devpi::client](#devpiclient) recipe
+will install the `devpi` command line client into a specific virtual
+environment.
+
 ### Recipes
 
 #### devpi::server
@@ -102,6 +107,10 @@ job.
 #### devpi::nginx
 Include this recipe to expose the devpi-server using [nginx][4] as a
 front-end server.
+
+#### devpi::client
+Include this recipe to install the devpi command-line client.  This will
+create a workstation from which you can manage a devpi-server installation.
 
 [2]: http://supervisord.org/
 [3]: http://smarden.org/runit/

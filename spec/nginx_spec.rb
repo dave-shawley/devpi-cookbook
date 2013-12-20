@@ -14,6 +14,8 @@ describe 'devpi::nginx' do
     # the following does not work!?
     # it { should run_execute 'nxdissite default' }
     it { should run_execute 'nxensite devpi-server' }
+    it { should create_directory '/var/log/devpi-server' }
+    it { should start_service('start nginx').with(service_name: 'nginx') }
   end
 
   context 'devpi-server site' do

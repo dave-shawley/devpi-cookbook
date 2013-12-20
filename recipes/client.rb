@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: server
+# Recipe:: client
 #
 # Copyright 2013, Dave Shawley
 #
@@ -24,32 +24,9 @@ python_virtualenv 'devpi environment' do
   action :create
 end
 
-user 'devpi privilege separation user' do
-  username node[:devpiserver][:daemon_user]
-  gid 'daemon'
-  home node[:devpiserver][:virtualenv]
-  comment 'Devpi-server privilege separation user.'
-  shell '/bin/false'
-  system
-  action :create
-end
-
-group 'devpi administrative group' do
-  group_name node[:devpiserver][:admin_group]
-  members node[:devpiserver][:daemon_user]
-end
-
-python_pip 'devpi-server' do
-  package_name 'devpi-server'
+python_pip 'devpi-client' do
+  package_name 'devpi-client'
   action :upgrade
   virtualenv node[:devpiserver][:virtualenv]
   version node[:devpiserver][:version] if node[:devpiserver].key? :version
-end
-
-directory 'devpi-server directory' do
-  action :create
-  path node[:devpiserver][:server_root]
-  owner node[:devpiserver][:daemon_user]
-  group node[:devpiserver][:admin_group]
-  mode 00770
 end

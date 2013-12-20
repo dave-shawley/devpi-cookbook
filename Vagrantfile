@@ -17,9 +17,9 @@ Vagrant.configure('2') do |config|
     chef.json = {}
     chef.run_list = [
       'recipe[apt]',
-      'recipe[devpi::server]',
       'recipe[devpi::runit]',
       'recipe[devpi::nginx]',
+      'recipe[devpi::client]',
     ]
   end
 
