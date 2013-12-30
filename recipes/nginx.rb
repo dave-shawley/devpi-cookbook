@@ -33,3 +33,8 @@ directory "/var/log/devpi-server"
 nginx_site 'devpi-server' do
   enable true
 end
+
+service 'start nginx' do
+  service_name 'nginx'
+  action :start
+end
