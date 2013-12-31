@@ -12,8 +12,10 @@ describe 'devpi::nginx' do
     }
     it { should include_recipe 'nginx::package' }
     it { should create_file '/etc/nginx/sites-available/devpi-server' }
+    it { should create_directory '/var/log/devpi-server' }
     it { should execute_command '/usr/sbin/nxdissite default' }
     it { should execute_command '/usr/sbin/nxensite devpi-server' }
+    it { should start_service 'nginx' }
   end
 
   context 'devpi-server site' do
