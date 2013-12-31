@@ -8,6 +8,12 @@ This file is used to list changes made in each version of the devpi cookbook.
 - Add the *client* recipe that installs the `devpi` command line utility.
 - Upgrade testing frameworks - ChefSpec 3.0, Test Kitchen 1.0.0.
 
+1.0.2
+-----
+- [devpi-cookbook#2](https://github.com/dave-shawley/devpi-cookbook/pull/2):
+  The *nginx* recipe was not creating the nginx log directory.
+- The nginx service is not necessarily started when it is installed.  The
+  recipe is required to explicitly start it.
 
 1.0.1
 -----
