@@ -58,4 +58,19 @@ describe 'devpi::nginx' do
     }
     it { should render_file '/foo/sites-available/devpi-server' }
   end
+
+  context 'when log directory is /foo' do
+    subject {
+      @chef_run.node.set[:devpiserver][:log_directory] = '/foo'
+      @chef_run.converge described_recipe
+    }
+    it {
+      should render_file('/etc/nginx/sites-available/devpi-server')\
+        .with_content('access_log /foo/nginx-access;')
+    }
+    it {
+      should render_file('/etc/nginx/sites-available/devpi-server')\
+        .with_content('error_log /foo/nginx-errors;')
+    }
+  end
 end

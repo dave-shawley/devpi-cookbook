@@ -8,8 +8,8 @@ upstream devpi {
 
 server {
 	server_name <%= node.fqdn %>;
-	access_log /var/log/devpi-server/nginx-access;
-	error_log /var/log/devpi-server/nginx-errors;
+	access_log <%= node[:devpiserver][:log_directory] %>/nginx-access;
+	error_log <%= node[:devpiserver][:log_directory] %>/nginx-errors;
 	
 	location / {
 		proxy_pass http://devpi;
