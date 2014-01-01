@@ -63,6 +63,12 @@ Attributes
     <td>Install Python virtual environment here</td>
     <td>/opt/devpi-server</td>
   </tr>
+  <tr>
+    <th><tt>[:devpiserver][:log_directory]</tt></th>
+    <td>Path</td>
+    <td>Write server logs here</td>
+    <td>/var/log/devpi-server</td>
+  </tr>
 </table>
 
 Usage
