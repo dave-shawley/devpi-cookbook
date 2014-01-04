@@ -10,6 +10,12 @@ This file is used to list changes made in each version of the devpi cookbook.
 - [devpi-cookbook#2](https://github.com/dave-shawley/devpi-cookbook/issues/2):
   Make the nginx log directory configurable via an attribute.
 
+1.0.3
+-----
+- The default nginx configuration limits the size of a POST/PUT request
+  to 1MB which is inconveniently small.  This release makes the max upload
+  size unlimited by setting `client_max_body_size` to zero.
+
 1.0.2
 -----
 - [devpi-cookbook#2](https://github.com/dave-shawley/devpi-cookbook/issues/2):
