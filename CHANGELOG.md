@@ -10,6 +10,10 @@ This file is used to list changes made in each version of the devpi cookbook.
 - [devpi-cookbook#2](https://github.com/dave-shawley/devpi-cookbook/issues/2):
   Make the nginx log directory configurable via an attribute.
 
+1.0.4
+-----
+- Copyright updated to include 2014.
+
 1.0.3
 -----
 - The default nginx configuration limits the size of a POST/PUT request
