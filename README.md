@@ -152,7 +152,7 @@ License and Authors
 
 #### License:
 
-Copyright (C) 2013 Dave Shawley
+Copyright (C) 2013-2014 Dave Shawley
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

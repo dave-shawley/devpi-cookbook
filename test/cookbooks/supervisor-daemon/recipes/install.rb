@@ -5,7 +5,7 @@
 # Installs the init scripts necessary to run the supervisor daemon on
 # RHEL derived systems.
 #
-# Copyright 2013, Dave Shawley
+# Copyright 2013-2014, Dave Shawley
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
