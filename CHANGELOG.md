@@ -3,6 +3,10 @@ devpi CHANGELOG
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+1.0.4
+-----
+- Copyright updated to include 2014.
+
 1.0.3
 -----
 - The default nginx configuration limits the size of a POST/PUT request
