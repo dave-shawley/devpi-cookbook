@@ -10,6 +10,10 @@
 	id -Gn devpi | grep -q devpi
 }
 
+@test "eventlet installed into virtual environment" {
+	/opt/devpi-server/bin/python -c 'import eventlet'
+}
+
 @test "devpi-server installed into virtual environment" {
 	test -x /opt/devpi-server/bin/devpi-server
 }

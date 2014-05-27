@@ -26,6 +26,16 @@ describe 'devpi::server' do
     its(:path) { should eq '/configured/path' }
   end
 
+  context 'eventlet installation' do
+    subject {
+      @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
+      @chef_run.converge described_recipe
+      @chef_run.python_pip 'eventlet'
+    }
+    its(:version) { should eq nil }
+    its(:virtualenv) { should eq '/configured/path' }
+  end
+
   context 'devpi-server installation' do
     subject {
       @chef_run.node.set[:devpiserver][:version] = :configured_version

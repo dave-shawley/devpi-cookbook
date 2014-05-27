@@ -39,6 +39,12 @@ group 'devpi administrative group' do
   members node[:devpiserver][:daemon_user]
 end
 
+python_pip 'eventlet' do
+  package_name 'eventlet'
+  action :upgrade
+  virtualenv node[:devpiserver][:virtualenv]
+end
+
 python_pip 'devpi-server' do
   package_name 'devpi-server'
   action :upgrade
