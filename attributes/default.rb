@@ -23,3 +23,5 @@ default[:devpiserver][:server_port] = 3141
 default[:devpiserver][:version] = nil  # install latest
 default[:devpiserver][:daemon_user] = 'devpi'
 default[:devpiserver][:admin_group] = 'devpi'
+
+default[:devpiserver][:nginx][:log_path] = '/var/log/devpi-server'
