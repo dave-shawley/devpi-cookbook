@@ -28,7 +28,10 @@ template "#{node[:nginx][:dir]}/sites-available/devpi-server" do
   notifies :start, 'service[nginx]'
 end
 
-directory "/var/log/devpi-server"
+directory node[:devpiserver][:nginx][:log_path] do
+  recursive true
+  action :create
+end
 
 nginx_site 'devpi-server' do
   enable true
