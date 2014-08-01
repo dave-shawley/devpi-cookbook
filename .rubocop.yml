@@ -26,3 +26,5 @@ TrailingComma:
   Enabled: false
 WordArray:
   Enabled: false
+RegexpLiteral:
+  Enabled: false
