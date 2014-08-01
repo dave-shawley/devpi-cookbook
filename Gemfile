@@ -1,14 +1,26 @@
 source 'https://rubygems.org'
 
-gem 'chef', '~>11.6'
-gem 'chefspec', '~>2.0'
-gem 'berkshelf', '~>2.0'
-gem 'foodcritic', '~>3.0'
-gem 'guard', '~>1.8'
-gem 'guard-kitchen', '~>0.0'
-gem 'guard-rspec', '~>3.1'
-gem 'guard-shell', '~>0.5'
-gem 'kitchen-vagrant', '~>0.14'
-gem 'rspec', '~>2.14'
-gem 'tailor', '~>1.3'
-gem 'test-kitchen', '>1.0'
+gem 'berkshelf', '~> 3.1.4'
+
+group :lint do
+  gem 'foodcritic', '~> 4.0.0'
+  gem 'tailor', '~>1.3'
+end
+
+group :unit do
+  gem 'chefspec',   '~> 3.1'
+end
+
+group :kitchen do
+  gem 'test-kitchen', '~> 1.2.1'
+  gem 'kitchen-vagrant', '~> 0.15.0'
+end
+
+group :development do
+  gem 'guard', '~> 2.4'
+  gem 'guard-kitchen'
+  gem 'guard-foodcritic'
+  gem 'guard-rspec'
+  gem 'guard-rubocop'
+  gem 'rake'
+end
