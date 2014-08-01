@@ -22,7 +22,6 @@
 
 include_recipe 'supervisor'
 
-
 if node[:platform] == 'centos'
   template '/etc/default/supervisord' do
     source 'supervisor.default.erb'
@@ -38,7 +37,7 @@ if node[:platform] == 'centos'
 
   bash 'enable supervisord service' do
     user 'root'
-    code "chkconfig supervisord on"
+    code 'chkconfig supervisord on'
   end
 
   service 'supervisord' do

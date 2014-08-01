@@ -1,54 +1,42 @@
-# -*- mode: ruby -*-
-# vim: set ft=ruby:
-
 require 'rspec/core/rake_task'
+require 'rubocop/rake_task'
+require 'foodcritic'
+require 'kitchen'
 
+# Style tests. Rubocop and Foodcritic
+namespace :style do
+  desc 'Run Ruby style checks'
+  RuboCop::RakeTask.new(:ruby)
 
-desc 'Run unit tests'
-task 'unit-test' do
-  RSpec::Core::RakeTask.new :t
-  Rake::Task[:t].invoke
-  rmtree 'vendor'
-end
-
-
-desc 'Run integration tests'
-task 'integration-test' do
-  sh %q{kitchen test}
-end
-
-desc 'Run style and best practice checks'
-task :lint do
-  sh %q{bundle exec knife cookbook test --cookbook-path .. devpi}
-end
-
-desc 'Remove all generated files'
-task 'maintainer-clean' do
-  sh %q{vagrant destroy -f}
-  sh %q{kitchen destroy all --parallel}
-  rmtree 'tmp'
-  rmtree 'vendor'
-  rmtree '.kitchen'
-  rmtree '.vagrant'
-end
-
-
-begin
-  require 'foodcritic'
-  FoodCritic::Rake::LintTask.new :foodcritic do |t|
-    t.options = {:fail_tags => ['correctness']}
+  desc 'Run Chef style checks'
+  FoodCritic::Rake::LintTask.new(:chef) do |t|
+    t.options = {
+      fail_tags: ['any'],
+      tags: ['~FC001']
+    }
   end
-  Rake::Task[:lint].enhance [:foodcritic]
-rescue LoadError
-  puts '>>>>> FoodCritic gem failed to load.'
-  puts '>>>>> Lint will not included FC checks.'
 end
 
-begin
-  require 'tailor/rake_task'
-  Tailor::RakeTask.new :tailor
-  Rake::Task[:lint].enhance [:tailor]
-rescue LoadError
-  puts '>>>>> Tailor gem failed to load.'
-  puts '>>>>> Lint will not run tailor checks.'
+desc 'Run all style checks'
+task style: ['style:chef', 'style:ruby']
+
+# Rspec and ChefSpec
+desc 'Run ChefSpec examples'
+RSpec::Core::RakeTask.new(:spec)
+
+# Integration tests. Kitchen.ci
+namespace :integration do
+  desc 'Run Test Kitchen with Vagrant'
+  task :vagrant do
+    Kitchen.logger = Kitchen.default_file_logger
+    Kitchen::Config.new.instances.each do |instance|
+      instance.test(:always)
+    end
+  end
 end
+
+desc 'Run all tests on Travis'
+task travis: ['style', 'spec']
+
+# Default
+task default: ['style', 'spec', 'integration:vagrant']

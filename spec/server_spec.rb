@@ -1,7 +1,6 @@
 require 'chefspec'
 require 'spec_helper'
 
-
 describe 'devpi::server' do
   before(:each) do
     @chef_run = ChefSpec::ChefRunner.new
@@ -17,31 +16,31 @@ describe 'devpi::server' do
   end
 
   context 'python environment' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
       @chef_run.converge described_recipe
       @chef_run.python_virtualenv 'devpi environment'
-    }
+    end
     its(:action) { should include :create }
     its(:path) { should eq '/configured/path' }
   end
 
   context 'devpi-server installation' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:version] = :configured_version
       @chef_run.converge described_recipe
       @chef_run.python_pip 'devpi-server'
-    }
+    end
     its(:version) { should eq :configured_version }
   end
 
   context 'devpi privilege separation user' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
       @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
       @chef_run.converge described_recipe
       @chef_run.user 'devpi privilege separation user'
-    }
+    end
     its(:username) { should eq 'configured_user' }
     its(:group) { should eq 'daemon' }
     its(:shell) { should eq '/bin/false' }
@@ -50,25 +49,25 @@ describe 'devpi::server' do
   end
 
   context 'devpi administrative group' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
       @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
       @chef_run.converge described_recipe
       @chef_run.group 'devpi administrative group'
-    }
+    end
     its(:group_name) { should eq 'configured_group' }
     its(:members) { should include 'configured_user' }
   end
 
   context 'devpi-server directory' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
       @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
       @chef_run.node.set[:devpiserver][:virtualenv] = '/virtual/env'
       @chef_run.node.set[:devpiserver][:server_root] = '/server/root'
       @chef_run.converge described_recipe
       @chef_run.directory 'devpi-server directory'
-    }
+    end
     its(:path) { should eq '/server/root' }
     its(:owner) { should eq 'configured_user' }
     its(:group) { should eq 'configured_group' }

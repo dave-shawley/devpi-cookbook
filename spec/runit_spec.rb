@@ -1,7 +1,6 @@
 require 'chefspec'
 require 'spec_helper'
 
-
 describe 'devpi::runit' do
   before(:each) do
     @chef_run = ChefSpec::ChefRunner.new
@@ -14,11 +13,11 @@ describe 'devpi::runit' do
   end
 
   context 'runit service configuration' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:admin_group] = 'configured_group'
       @chef_run.converge described_recipe
       @chef_run.find_resource 'runit_service', 'devpi-server'
-    }
+    end
     its(:owner) { should eq 'root' }
     its(:group) { should eq 'configured_group' }
   end
