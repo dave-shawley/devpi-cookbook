@@ -1,21 +1,13 @@
-# Runtime cache files
+tmp
+.rspec
+.rvmrc
+.rbenv-verson
+.ruby-version
+vendor
+.bundle
+bin
+.chef
 .kitchen/
-.vagrant/
-metadata.json
-
-# Editor temporary files
-*~
-*#
-.#*
-\#*#
-.*.sw[a-z]
-*.un~
-
-# Bundler, Berks, etc.
-bin/*
-.bundle/*
-vendor/
-rspec_guard_result
-
-# Local override files
 .kitchen.local.yml
+Gemfile.lock
+Berksfile.lock
