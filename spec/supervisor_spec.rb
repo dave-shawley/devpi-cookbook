@@ -1,7 +1,6 @@
 require 'chefspec'
 require 'spec_helper'
 
-
 describe 'devpi::supervisor' do
   before(:each) do
     @chef_run = ChefSpec::ChefRunner.new
@@ -14,14 +13,14 @@ describe 'devpi::supervisor' do
   end
 
   context 'supervisor service' do
-    subject {
+    subject do
       @chef_run.node.set[:devpiserver][:daemon_user] = 'configured_user'
       @chef_run.node.set[:devpiserver][:virtualenv] = '/configured/path'
       @chef_run.node.set[:devpiserver][:server_root] = '/configured/server/root'
-      @chef_run.node.set[:devpiserver][:server_port] = 65432
+      @chef_run.node.set[:devpiserver][:server_port] = 65_432
       @chef_run.converge described_recipe
       @chef_run.find_resource 'supervisor_service', 'devpi-server'
-    }
+    end
     its(:action) { should eq [:enable] }
     its(:command) { should match %r{^/configured/path/bin/devpi-server .*} }
     its(:command) { should match %r{^.* --serverdir /configured/server/root.*} }

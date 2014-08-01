@@ -22,8 +22,8 @@ include_recipe 'devpi::server'
 
 supervisor_service 'devpi-server' do
   action :enable
-  command("#{node[:devpiserver][:virtualenv]}/bin/devpi-server" +
-    " --port #{node[:devpiserver][:server_port]}" +
+  command("#{node[:devpiserver][:virtualenv]}/bin/devpi-server" \
+    " --port #{node[:devpiserver][:server_port]}" \
     " --serverdir #{node[:devpiserver][:server_root]}")
   user node[:devpiserver][:daemon_user]
 end
