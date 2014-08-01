@@ -4,7 +4,7 @@ gem 'berkshelf', '~> 3.1.4'
 
 group :lint do
   gem 'foodcritic', '~> 4.0.0'
-  gem 'tailor', '~>1.3'
+  gem 'rubocop', '~> 0.24.1'
 end
 
 group :unit do
