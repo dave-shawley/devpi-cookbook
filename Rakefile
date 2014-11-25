@@ -32,12 +32,3 @@ rescue LoadError
   puts '>>>>> FoodCritic gem failed to load.'
   puts '>>>>> Lint will not included FC checks.'
 end
-
-begin
-  require 'tailor/rake_task'
-  Tailor::RakeTask.new :tailor
-  Rake::Task[:lint].enhance [:tailor]
-rescue LoadError
-  puts '>>>>> Tailor gem failed to load.'
-  puts '>>>>> Lint will not run tailor checks.'
-end

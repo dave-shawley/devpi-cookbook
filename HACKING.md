@@ -78,13 +78,14 @@ simply because they are the ones that I happened to pick up along the way.
 * [foodcritic][2.2] is used for Chef cookbook best practice testing
 * [test-kitchen][1.4] runs my integration tests
 * [berkshelf][2.4] manages my cookbook dependencies
-* [tailor][2.5] is used for Ruby style checks
+* [rubocop] is used for Ruby style checks
 
 [2.1]: http://rake.rubyforge.org/
 [2.2]: http://acrmp.github.io/foodcritic/
 [2.3]: http://rspec.info/
 [2.4]: http://berkshelf.com/
 [2.5]: http://github.com/turboladen/tailor/
+[rubocop]: http://github.com/bbatsov/rubocop
 
 
 # TESTING DURING DEVELOPMENT
