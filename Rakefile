@@ -1,17 +1,6 @@
 # -*- mode: ruby -*-
 # vim: set ft=ruby:
 
-require 'rspec/core/rake_task'
-
-
-desc 'Run unit tests'
-task 'unit-test' do
-  RSpec::Core::RakeTask.new :t
-  Rake::Task[:t].invoke
-  rmtree 'vendor'
-end
-
-
 desc 'Run integration tests'
 task 'integration-test' do
   sh %q{kitchen test}

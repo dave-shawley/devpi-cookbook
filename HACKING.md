@@ -3,8 +3,7 @@
 First things first, lets get your ruby environment bootstrapped.  If you
 don't have a *good* ruby development environment set up, then download
 and install [rvm][1.1] or [rbenv][1.2].  After that, we can set up things
-the way that they should be set up.  The examples in this document use
-*rbenv* with the [gemset plug-in][1.3] installed.
+the way that they should be set up.
 
     prompt% gem install bundler --no-rdoc --no-ri
     Fetching: bundler-1.3.5.gem (100%)
@@ -15,22 +14,7 @@ the way that they should be set up.  The examples in this document use
 ## VERIFYING YOUR ENVIRONMENT
 
 Now you should be set up for development.  Give it a try by running the
-unit tests.
-
-    prompt% rake unit-test
-    /Users/.../bin/ruby -S rspec ./spec/default_spec.rb
-    *
-
-    Pending:
-      devpi::default should do something
-        # Your recipe examples go here.
-        # ./spec/default_spec.rb:5
-
-    Finished in 0.00044 seconds
-    1 example, 0 failures, 1 pending
-
-If you get this far, then things are going pretty well.  Let's try
-running our style checks.
+style checks.
 
     prompt% rake lint
     Running foodcritic check on devpi
@@ -92,7 +76,6 @@ simply because they are the ones that I happened to pick up along the way.
 
 * [rake][2.1] is used for general task automation
 * [foodcritic][2.2] is used for Chef cookbook best practice testing
-* [rspec][2.3] runs my unit tests
 * [test-kitchen][1.4] runs my integration tests
 * [berkshelf][2.4] manages my cookbook dependencies
 * [tailor][2.5] is used for Ruby style checks
@@ -124,19 +107,6 @@ This sounds like a good bit of work and it is.  Luckily, [Fletcher
 Nichol][3.2] came up with [test-kitchen][1.4] which automates running
 integration tests across one or more vagrant images.  You can run the
 integration tests with the **kitchen test** command.
-
-## Unit Tests
-
-Unit testing is down without bringing up a virtual machine or installing the
-recipe anywhere.  I make use of [RSpec][2.3] and [ChefSpec][3.3] to unit
-test the recipes.  This is automated with **rake unit-test**.  Where the
-job of the integration tests is to ensure that the recipe works as
-advertised, the unit tests ensure that all of the configuration options work
-correctly and all of the low-level details are spot on.
-
-[3.1]: https://github.com/sstephenson/bats
-[3.2]: https://github.com/fnichol
-[3.3]: https://github.com/acrmp/chefspec
 
 
 # DEVELOPMENT PROCESS
