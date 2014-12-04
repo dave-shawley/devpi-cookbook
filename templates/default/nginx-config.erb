@@ -3,15 +3,15 @@
 #
 
 upstream devpi {
-	server 127.0.0.1:<%= node[:devpiserver][:server_port] %>;
+	server 127.0.0.1:<%= node['devpiserver']['server_port'] %>;
 }
 
 server {
 	server_name <%= node.fqdn %>;
-	access_log <%= node[:devpiserver][:log_directory] %>/nginx-access;
-	error_log <%= node[:devpiserver][:log_directory] %>/nginx-errors;
+	access_log <%= node['devpiserver']['log_directory'] %>/nginx-access;
+	error_log <%= node['devpiserver']['log_directory'] %>/nginx-errors;
 	client_max_body_size 0;
-	
+
 	location / {
 		proxy_pass http://devpi;
 		proxy_redirect off;

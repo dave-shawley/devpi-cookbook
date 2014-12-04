@@ -4,4 +4,4 @@
 #
 
 exec 2>&1
-exec chpst -0 -u <%= node[:devpiserver][:daemon_user] %> "<%= node[:devpiserver][:virtualenv] %>/bin/devpi-server" --port <%= node[:devpiserver][:server_port] %> --serverdir "<%= node[:devpiserver][:server_root] %>"
+exec chpst -0 -u <%= node['devpiserver']['daemon_user'] %> "<%= node['devpiserver']['virtualenv'] %>/bin/devpi-server" --port <%= node['devpiserver']['server_port'] %> --serverdir "<%= node['devpiserver']['server_root'] %>"

@@ -20,13 +20,13 @@
 include_recipe 'python'
 
 python_virtualenv 'devpi environment' do
-  path node[:devpiserver][:virtualenv]
+  path node['devpiserver']['virtualenv']
   action :create
 end
 
 python_pip 'devpi-client' do
   package_name 'devpi-client'
   action :upgrade
-  virtualenv node[:devpiserver][:virtualenv]
-  version node[:devpiserver][:version] if node[:devpiserver].key? :version
+  virtualenv node['devpiserver']['virtualenv']
+  version node['devpiserver']['version'] if node['devpiserver'].key? 'version'
 end
