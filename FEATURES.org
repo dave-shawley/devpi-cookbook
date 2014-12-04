@@ -28,10 +28,10 @@ this file is -- /a list of things that need do'ing/.
   [ ] +import LWRP+
   [ ] +export LWRP+
 
-* Version 2.0 [2/6]
+* Version 2.0 [3/6]
   [ ] Remove supporting recipes (e.g., supervisor, runit)
   [ ] Use =devpi-server --gen-config= to generate nginx configuration
   [ ] Convert server recipe into LWRP
   [X] Switch to ChefDK
-  [ ] Appease all style checks
+  [X] Appease all style checks
   [X] Remove git-flow nonsense

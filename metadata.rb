@@ -1,16 +1,16 @@
-name             'devpi'
-maintainer       'Dave Shawley'
+name 'devpi'
+maintainer 'Dave Shawley'
 maintainer_email 'daveshawley@gmail.com'
-license          'Apache 2.0'
-description      'Installs/Configures a devpi server'
+license 'Apache 2.0'
+description 'Installs/Configures a devpi server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '2.0.0'
+version '2.0.0'
 
 depends 'nginx'
 depends 'python'
 depends 'runit'
 depends 'supervisor'
-['ubuntu', 'centos'].each do |platform|
+%w(ubuntu centos).each do |platform|
   supports platform
 end
 
