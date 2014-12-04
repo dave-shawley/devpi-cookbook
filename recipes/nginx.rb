@@ -23,7 +23,7 @@ nginx_site 'default' do
   enable false
 end
 
-template "#{node[:nginx][:dir]}/sites-available/devpi-server" do
+template "#{node['nginx']['dir']}/sites-available/devpi-server" do
   source 'nginx-config.erb'
   notifies :start, 'service[nginx]'
 end

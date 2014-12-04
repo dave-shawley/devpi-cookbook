@@ -7,7 +7,7 @@ a pretty nice Sublime Text plug-in for it and the format is very nice
 for keeping track of TODO lists and what not.  That is precisely what
 this file is -- /a list of things that need do'ing/.
 
-* Version 1.0 ([8/8])
+* Version 1.0 [8/8]
   [X] devpi-server is installed into virtual environment
   [X] virtual environment location is configurable
   [X] devpi-server version is configurable
@@ -21,9 +21,17 @@ this file is -- /a list of things that need do'ing/.
     [X] server root configurable
   [X] nginx recipe - expose devpi-server via nginx
 
-* Version 1.1 ([0/5])
-  [ ] devpi client recipe - only install the client
-  [ ] user LWRP
-  [ ] index LWRP
-  [ ] import LWRP
-  [ ] export LWRP
+* Version 1.1 [1/5]
+  [X] devpi client recipe - only install the client
+  [ ] +user LWRP+
+  [ ] +index LWRP+
+  [ ] +import LWRP+
+  [ ] +export LWRP+
+
+* Version 2.0 [0/6]
+  [ ] Remove supporting recipes (e.g., supervisor, runit)
+  [ ] Use =devpi-server --gen-config= to generate nginx configuration
+  [ ] Convert server recipe into LWRP
+  [ ] Switch to ChefDK
+  [ ] Appease all style checks
+  [ ] Remove git-flow nonsense

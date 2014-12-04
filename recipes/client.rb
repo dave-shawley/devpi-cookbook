@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Recipe:: runit
+# Recipe:: client
 #
 # Copyright 2013-2014, Dave Shawley
 #
@@ -17,12 +17,16 @@
 # limitations under the License.
 #
 
-include_recipe 'runit'
-include_recipe 'devpi::server'
+include_recipe 'python'
 
-runit_service 'devpi-server' do
-  owner 'root'
-  group node['devpiserver']['admin_group']
-  log true
-  default_logger true
+python_virtualenv 'devpi environment' do
+  path node['devpiserver']['virtualenv']
+  action :create
+end
+
+python_pip 'devpi-client' do
+  package_name 'devpi-client'
+  action :upgrade
+  virtualenv node['devpiserver']['virtualenv']
+  version node['devpiserver']['version'] if node['devpiserver'].key? 'version'
 end
