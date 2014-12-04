@@ -4,10 +4,7 @@ driver_config:
   require_chef_omnibus: true
 
 platforms:
-- name: ubuntu-precise
-  driver_config:
-    box: opscode-ubuntu-12.04
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box
+- name: ubuntu-14.04
   run_list:
   - "recipe[apt]"
 - name: centos-6.4
@@ -16,21 +13,18 @@ platforms:
     box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
 
 suites:
-- name: default
-  run_list:
-  - "recipe[devpi::server]"
-  attributes: {}
 - name: supervisor
   run_list:
   - "recipe[supervisor-daemon::install]"
   - "recipe[devpi::supervisor]"
+  - "recipe[devpi::nginx]"
   attributes: {}
 - name: runit
   run_list:
   - "recipe[devpi::runit]"
-  attributes: {}
-- name: nginx
-  run_list:
-  - "recipe[devpi::runit]"
   - "recipe[devpi::nginx]"
+  attributes: {}
+- name: client
+  run_list:
+  - "recipe[devpi::client]"
   attributes: {}
