@@ -3,6 +3,11 @@ devpi CHANGELOG
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+2.0.0
+-----
+- Fully embrace ChefDK for development.
+- Switch attribute access from symbols to strings.
+
 1.1.0
 -----
 - Add the *client* recipe that installs the `devpi` command line utility.

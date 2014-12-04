@@ -2,7 +2,7 @@ devpi Cookbook
 ==============
 This cookbook installs and configures a devpi server.  [Devpi][1] is a
 PyPI-compatible Python Index server that acts as both a freestanding
-Python Index as well as a pull-through cache of the official Python 
+Python Index as well as a pull-through cache of the official Python
 Package Index.
 
 [1]: http://doc.devpi.net/latest/
@@ -23,34 +23,34 @@ Attributes
     <th>Default</th>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:admin_group]</tt></th>
+    <th><tt>['devpiserver']['admin_group']</tt></th>
     <td>String</td>
     <td>This group can administer the devpi server.  This group
         will be created if it does not exist.</td>
     <td>devpi</td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:server_root]</tt></th>
+    <th><tt>['devpiserver']['server_root']</tt></th>
     <td>String</td>
     <td>Store server data in this directory.  This directory will be
         created if it does not exist.</td>
     <td>/opt/devpi-server/data</td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:server_port]</tt></th>
+    <th><tt>['devpiserver']['server_port']</tt></th>
     <td>Integer</td>
     <td>Port number that the server will listen on.</td>
     <td>3141</td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:daemon_user]</tt></th>
+    <th><tt>['devpiserver']['daemon_user']</tt></th>
     <td>String</td>
     <td>Run the daemon as this user.  This user will be created if
         it does not exist.</td>
     <td>devpi</td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:version]</tt></th>
+    <th><tt>['devpiserver']['version']</tt></th>
     <td>String or <tt>nil</tt></td>
     <td>Install this version of the devpi-server package.
         Set this attribute to <tt>nil</tt> to install the latest
@@ -58,13 +58,13 @@ Attributes
     <td><tt>nil</tt></td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:virtualenv]</tt></th>
+    <th><tt>['devpiserver']['virtualenv']</tt></th>
     <td>Path</td>
     <td>Install Python virtual environment here</td>
     <td>/opt/devpi-server</td>
   </tr>
   <tr>
-    <th><tt>[:devpiserver][:log_directory]</tt></th>
+    <th><tt>['devpiserver']['log_directory']</tt></th>
     <td>Path</td>
     <td>Write server logs here</td>
     <td>/var/log/devpi-server</td>
@@ -135,7 +135,7 @@ Contributing
    until the integration tests pass.
 6. Implement unit tests to cover any configuration or platform details.
    Add attributes as needed at this point.  Run unit tests with `rake
-   unit-test`.  
+   unit-test`.
 7. Run the static analysis tasks using `rake lint`.  Fix any problems that
    they find.
 8. Update *README.md* to mention any new attributes and add yourself to
