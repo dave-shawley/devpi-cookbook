@@ -10,11 +10,11 @@ platforms:
 - name: centos-6.4
 
 suites:
-- name: supervisor
+- name: server
   run_list:
-  - "recipe[supervisor-daemon::install]"
-  - "recipe[devpi::supervisor]"
   - "recipe[devpi::nginx]"
+  - "recipe[devpi::server]"
+  - "recipe[supervisor-daemon::install]"
   attributes: {}
 - name: runit
   run_list:

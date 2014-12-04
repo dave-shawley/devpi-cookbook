@@ -44,3 +44,13 @@ if node[:platform] == 'centos'
     action :start
   end
 end
+
+supervisor_service 'devpi-server' do
+  action :enable
+  command %W(
+    #{node['devpiserver']['virtualenv']}/bin/devpi-server
+    --port #{node['devpiserver']['server_port']}
+    --serverdir #{node['devpiserver']['server_root']}
+  ).join(' ')
+  user node['devpiserver']['daemon_user']
+end

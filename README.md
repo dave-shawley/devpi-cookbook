@@ -1,11 +1,11 @@
 devpi Cookbook
 ==============
-This cookbook installs and configures a devpi server.  [Devpi][1] is a
-PyPI-compatible Python Index server that acts as both a freestanding
-Python Index as well as a pull-through cache of the official Python
-Package Index.
+This cookbook installs and configures a devpi server.  [Devpi server]
+is a PyPI-compatible Python Index server that acts as both a freestanding
+Python Index as well as a pull-through cache of the official Python Package
+Index.
 
-[1]: http://doc.devpi.net/latest/
+[devpi server]: http://doc.devpi.net/latest/
 
 Requirements
 ------------
@@ -73,25 +73,14 @@ Attributes
 
 Usage
 -----
-Include recipes from this cookbook to install the [devpi server][1] as
-a daemon and, optionally, expose the server via an nginx endpoint.  This
-cookbook supports a few different use cases.
+Add the **devpi::server** recipe to your `run_list` to install [devpi server]
+into a Python virtual environment created just for it.  The **devpi::nginx**
+recipe creates an nginx site configured to expose the server on port 80.
 
-1. Install devpi without additional support.
-2. Manage devpi with either supervisor or runit.
-3. Expose an installed devpi instance using nginx.
-
-The first use case is easy, add the [devpi::server](#devpiserver) recipe
-to your `run_list`.  The second use case is simple as well.  Include the
-appropriate recipe and it will install devpi and configure it to run in
-the chosen environment.  The final use case requires that you choose how
-you want devpi to run by selecting one of the other recipes and adding it
-to the node's `run_list` **before** you include [devpi::nginx](#devpinginx).
-
-The other use case that this cookbook supports is installing and managing
-a devpi-server installation.  The [devpi::client](#devpiclient) recipe
-will install the `devpi` command line client into a specific virtual
-environment.
+The **devpi::client** recipe installs the `devpi` command line client into
+a virtual directory.  The **devpi::server** recipe does not install the
+command line client so you have to apply this recipe if you want the client
+installed alongside the server.
 
 ### Recipes
 
@@ -99,28 +88,21 @@ environment.
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
-#### devpi::supervisor
-Include this recipe to manage the devpi server using [supervisor][2].
-It will install supervisor globally if necessary and add the devpi server
-job.  This recipe assumes that the *server* recipe is already present in
-the run list.
-
 #### devpi::runit
-Include this recipe to manage the devpi server using a [runit][3] script.
+Include this recipe to manage the devpi server using a [runit] script.
 It will install runit globally if necessary and configure a devpi server
 job.
 
 #### devpi::nginx
-Include this recipe to expose the devpi-server using [nginx][4] as a
+Include this recipe to expose the devpi-server using [nginx] as a
 front-end server.
 
 #### devpi::client
 Include this recipe to install the devpi command-line client.  This will
 create a workstation from which you can manage a devpi-server installation.
 
-[2]: http://supervisord.org/
-[3]: http://smarden.org/runit/
-[4]: http://nginx.org/
+[runit]: http://smarden.org/runit/
+[nginx]: http://nginx.org/
 
 Contributing
 ------------
