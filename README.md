@@ -126,18 +126,18 @@ Contributing
 ------------
 
 1. Fork the repository on Github
-2. Create a feature branch named *"feature/my_feature"* from `development`
-3. Edit *README.md* to describe your feature
-4. Write integration tests that verify your feature, run them with
-   `rake integration-test` -- **they should fail**
-5. Implement your feature in its default configuration.  You should not
+2. Create a new branch from `master` to hold your changes.
+3. Create the test kitchen environment by running `kitchen converge` on
+   whichever suite you are targeting.  Then run `kitchen verify` on the
+   suite to make sure that the tests pass.
+4. Edit *README.md* to describe your feature.
+5. Write integration tests that verify your feature, run them with
+   `kitchen verify` -- **they should fail**
+6. Implement your feature in its default configuration.  You should not
    modify anything outside if the recipe at this point.  Keep iterating
    until the integration tests pass.
-6. Implement unit tests to cover any configuration or platform details.
-   Add attributes as needed at this point.  Run unit tests with `rake
-   unit-test`.
-7. Run the static analysis tasks using `rake lint`.  Fix any problems that
-   they find.
+7. Run the static analysis tasks, `rubocop` and `foodcritic`, periodically.
+   Fix any problems that they uncover.
 8. Update *README.md* to mention any new attributes and add yourself to
    the **AUTHORS** list.
 9. Issue a pull-request on Github.

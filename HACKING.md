@@ -104,12 +104,9 @@ integration tests with the **kitchen test** command.
 
 The development process that I use with this project is pretty simple.
 
-1. Create a feature branch off of `development` for the new feature.
+1. Create a feature branch off of `master` for the new feature.
 2. Update the README to describe the new recipe or changes to the existing
    recipe.  If there are any obvious attributes, document them now.
 3. Write integration tests that express the default behavior of the feature.
 4. Implement as much of the recipe as is necessary to meet the requirements
    of the integration test.
-5. Add attributes to make the new recipe configurable and add unit tests
-   that verify the behavior of changing the attributes.
-
