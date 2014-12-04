@@ -22,7 +22,6 @@
 
 include_recipe 'supervisor'
 
-
 if node[:platform] == 'centos'
   template '/etc/default/supervisord' do
     source 'supervisor.default.erb'
@@ -38,10 +37,20 @@ if node[:platform] == 'centos'
 
   bash 'enable supervisord service' do
     user 'root'
-    code "chkconfig supervisord on"
+    code 'chkconfig supervisord on'
   end
 
   service 'supervisord' do
     action :start
   end
+end
+
+supervisor_service 'devpi-server' do
+  action :enable
+  command %W(
+    #{node['devpiserver']['virtualenv']}/bin/devpi-server
+    --port #{node['devpiserver']['server_port']}
+    --serverdir #{node['devpiserver']['server_root']}
+  ).join(' ')
+  user node['devpiserver']['daemon_user']
 end

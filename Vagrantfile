@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
       'recipe[apt]',
       'recipe[devpi::runit]',
       'recipe[devpi::nginx]',
-      'recipe[devpi::client]',
+      'recipe[devpi::client]'
     ]
   end
 

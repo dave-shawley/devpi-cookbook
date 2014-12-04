@@ -4,7 +4,6 @@ DEPENDENCIES
     path: .
     metadata: true
   nginx
-  runit
   supervisor
   supervisor-daemon
     path: test/cookbooks/supervisor-daemon
@@ -17,8 +16,6 @@ GRAPH
   devpi (2.0.0)
     nginx (>= 0.0.0)
     python (>= 0.0.0)
-    runit (>= 0.0.0)
-    supervisor (>= 0.0.0)
   nginx (2.7.4)
     apt (~> 2.2)
     bluepill (~> 2.3)
@@ -37,7 +34,7 @@ GRAPH
     yum-epel (>= 0.0.0)
   supervisor (0.4.12)
     python (>= 0.0.0)
-  supervisor-daemon (0.1.0)
+  supervisor-daemon (0.2.0)
     supervisor (>= 0.0.0)
   yum (3.5.1)
   yum-epel (0.5.3)

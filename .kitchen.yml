@@ -8,21 +8,13 @@ platforms:
   run_list:
   - "recipe[apt]"
 - name: centos-6.4
-  driver_config:
-    box: opscode-centos-6.4
-    box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/opscode_centos-6.4_provisionerless.box
 
 suites:
-- name: supervisor
+- name: server
   run_list:
+  - "recipe[devpi::nginx]"
+  - "recipe[devpi::server]"
   - "recipe[supervisor-daemon::install]"
-  - "recipe[devpi::supervisor]"
-  - "recipe[devpi::nginx]"
-  attributes: {}
-- name: runit
-  run_list:
-  - "recipe[devpi::runit]"
-  - "recipe[devpi::nginx]"
   attributes: {}
 - name: client
   run_list:
