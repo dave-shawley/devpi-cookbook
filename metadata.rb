@@ -8,7 +8,6 @@ version '2.0.0'
 
 depends 'nginx'
 depends 'python'
-depends 'runit'
 %w(ubuntu centos).each do |platform|
   supports platform
 end

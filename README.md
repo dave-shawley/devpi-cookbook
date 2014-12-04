@@ -45,8 +45,8 @@ Attributes
   <tr>
     <th><tt>['devpiserver']['daemon_user']</tt></th>
     <td>String</td>
-    <td>Run the daemon as this user.  This user will be created if
-        it does not exist.</td>
+    <td>Expect the daemon to run as this user.  This user will be
+        created if it does not exist.</td>
     <td>devpi</td>
   </tr>
   <tr>
@@ -88,11 +88,6 @@ installed alongside the server.
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
-#### devpi::runit
-Include this recipe to manage the devpi server using a [runit] script.
-It will install runit globally if necessary and configure a devpi server
-job.
-
 #### devpi::nginx
 Include this recipe to expose the devpi-server using [nginx] as a
 front-end server.
@@ -101,7 +96,6 @@ front-end server.
 Include this recipe to install the devpi command-line client.  This will
 create a workstation from which you can manage a devpi-server installation.
 
-[runit]: http://smarden.org/runit/
 [nginx]: http://nginx.org/
 
 Contributing
