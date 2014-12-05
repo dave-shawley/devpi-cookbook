@@ -21,3 +21,7 @@ load test_helpers
 @test "nginx site uses correct port" {
 	grep 'proxy_pass.*3144;' /etc/nginx/sites-enabled/devpi
 }
+
+@test "default nginx site is disabled" {
+	test ! -e /etc/nginx/sites-enabled/default
+}

@@ -108,6 +108,9 @@ action :create do
       action :delete
       recursive true
     end
+    nginx_site 'default' do
+      enable false
+    end
     nginx_site new_resource.nginx_site
   end
 
