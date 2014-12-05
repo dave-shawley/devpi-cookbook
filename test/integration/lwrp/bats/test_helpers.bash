@@ -1,16 +1,16 @@
 verify_devpi_server() {
 	server_root=$1
 	version=$2
-	daemon_user=${3:-devpi}
+	data_dir=${3:-$server_root/data}
 
-	sudo -u $daemon_user test -x "$server_root/bin/devpi-server"
+	sudo -u devpi test -x "$server_root/bin/devpi-server"
 	output=$("$server_root/bin/devpi-server" --version)
 	test $? -eq 0
 	test -z "$version" -o "$output" = "$version"
 
-	test -e "$server_root/data/.event_serial"
-	test -e "$server_root/data/.secret"
-	test -e "$server_root/data/.sqlite"
+	test -e "$data_dir/.event_serial"
+	test -e "$data_dir/.secret"
+	test -e "$data_dir/.sqlite"
 }
 
 verify_user() {
