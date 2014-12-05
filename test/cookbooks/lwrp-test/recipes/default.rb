@@ -28,3 +28,8 @@ devpi_server '/opt/devpi/external-data-server' do
   data_directory '/opt/devpi/data'
   port 3143
 end
+
+devpi_server '/opt/devpi/nginx-enabled' do
+  nginx_site 'devpi'
+  port 3144
+end

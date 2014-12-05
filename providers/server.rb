@@ -85,6 +85,29 @@ action :create do
     end
   end
 
+  if new_resource.nginx_site
+    include_recipe 'nginx'
+    execute "generate #{new_resource.nginx_site}" do
+      cwd '/tmp'
+      command "#{command_root} --port #{new_resource.port} --gen-config"
+    end
+    execute "install #{new_resource.nginx_site}" do
+      cwd '/tmp'
+      command %W(
+        install
+        -o root -g #{new_resource.admin_group} -m 0664
+        /tmp/gen-config/nginx-devpi.conf
+        #{node['nginx']['dir']}/sites-available/#{new_resource.nginx_site}
+      ).join(' ')
+    end
+    directory "remove #{new_resource.nginx_site} temp config" do
+      path '/tmp/gen-config'
+      action :delete
+      recursive true
+    end
+    nginx_site new_resource.nginx_site
+  end
+
   new_resource.updated_by_last_action(true)
 end
 
