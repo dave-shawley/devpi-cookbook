@@ -42,7 +42,8 @@ action :create do
     version new_resource.version unless new_resource.version.nil?
   end
 
-  user new_resource.daemon_user do
+  user "Daemon user for #{new_resource.directory}" do
+    username new_resource.daemon_user
     gid 'daemon'
     home new_resource.directory
     comment 'Dev-pi Server privilege separation user'
@@ -52,7 +53,8 @@ action :create do
     not_if "id #{new_resource.daemon_user}"
   end
 
-  group new_resource.admin_group do
+  group "Admin group for #{new_resource.directory}" do
+    group_name new_resource.admin_group
     system true
     action :create
   end
