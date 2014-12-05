@@ -1,5 +1,5 @@
-devpi Cookbook
-==============
+# devpi Cookbook
+
 This cookbook installs and configures a devpi server.  [Devpi server]
 is a PyPI-compatible Python Index server that acts as both a freestanding
 Python Index as well as a pull-through cache of the official Python Package
@@ -7,13 +7,12 @@ Index.
 
 [devpi server]: http://doc.devpi.net/latest/
 
-Requirements
-------------
+## Requirements
+
 * **Python Versions**: Python 2.6 amd 2.7
 * **Operating Systems**: Debian/Ubuntu, Enterprise Linux/CentOS
 
-Attributes
-----------
+## Attributes
 
 <table>
   <tr>
@@ -71,8 +70,8 @@ Attributes
   </tr>
 </table>
 
-Usage
------
+## Usage
+
 Add the **devpi::server** recipe to your `run_list` to install [devpi server]
 into a Python virtual environment created just for it.  The **devpi::nginx**
 recipe creates an nginx site configured to expose the server on port 80.
@@ -82,24 +81,21 @@ a virtual directory.  The **devpi::server** recipe does not install the
 command line client so you have to apply this recipe if you want the client
 installed alongside the server.
 
-### Recipes
-
-#### devpi::server
+### devpi::server
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
-#### devpi::nginx
+### devpi::nginx
 Include this recipe to expose the devpi-server using [nginx] as a
 front-end server.
 
-#### devpi::client
+### devpi::client
 Include this recipe to install the devpi command-line client.  This will
 create a workstation from which you can manage a devpi-server installation.
 
 [nginx]: http://nginx.org/
 
-Contributing
-------------
+## Contributing
 
 1. Fork the repository on Github
 2. Create a new branch from `master` to hold your changes.
@@ -120,13 +116,13 @@ Contributing
 
 *HACKING.md* contains additional details about developing in this cookbook.
 
-License and Authors
--------------------
-#### Cookbook Authors:
+## License and Authors
+
+### Cookbook Authors:
 
 * Dave Shawley
 
-#### License:
+### License:
 
 Copyright (C) 2013-2014 Dave Shawley
 
