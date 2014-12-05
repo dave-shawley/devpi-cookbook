@@ -1,32 +1,23 @@
+load test_helpers
+
 @test "default-server virtualenv created" {
-	test -d /opt/devpi/default-server
-	test -x /opt/devpi/default-server/bin/python
+	verify_virtualenv /opt/devpi/default-server
 }
 
 @test "devpi user created" {
-	IFS=: userdata=($(getent passwd devpi))
-	test ${userdata[2]} -lt 1000
-	test "${userdata[5]}" = "/opt/devpi/default-server"
-	test "${userdata[6]}" = "/bin/false"
+	verify_user devpi /opt/devpi/default-server
 }
 
 @test "devpi group created" {
 	getent group devpi
 }
 
-@test "data directory is created" {
-	test -d /etc/sudoers.d && echo "root ALL=(ALL:ALL) ALL" > /etc/sudoers.d/root
+@test "default-server is correctly installed" {
+	verify_devpi_server /opt/devpi/default-server
+}
+
+@test "default-server data directory is created" {
+	ensure_root_can_group_sudo
 	sudo -u devpi test -w /opt/devpi/default-server/data
 	sudo -u nobody -g devpi test -w /opt/devpi/default-server/data
-}
-
-@test "devpi-server installed into virtualenv" {
-	test -x /opt/devpi/default-server/bin/devpi-server
-	/opt/devpi/default-server/bin/devpi-server --help
-}
-
-@test "devpi-server is initialized" {
-	test -e /opt/devpi/default-server/data/.event_serial
-	test -e /opt/devpi/default-server/data/.secret
-	test -e /opt/devpi/default-server/data/.sqlite
 }

@@ -49,6 +49,7 @@ action :create do
     shell '/bin/false'
     system true
     action :create
+    not_if "id #{new_resource.daemon_user}"
   end
 
   group new_resource.admin_group do

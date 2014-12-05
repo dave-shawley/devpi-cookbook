@@ -18,3 +18,8 @@
 #
 
 devpi_server '/opt/devpi/default-server'
+
+devpi_server '/opt/devpi/devpi-server-2.0.0' do
+  version '2.0.0'
+  port 3142
+end
