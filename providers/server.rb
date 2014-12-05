@@ -87,6 +87,9 @@ action :create do
 
   if new_resource.nginx_site
     include_recipe 'nginx'
+    service 'nginx' do
+      action :nothing
+    end
     execute "generate #{new_resource.nginx_site}" do
       cwd '/tmp'
       command "#{command_root} --port #{new_resource.port} --gen-config"
@@ -112,4 +115,23 @@ action :create do
 end
 
 action :delete do
+  directory "deleting #{new_resource.directory}" do
+    path new_resource.directory
+    action :delete
+    recursive true
+  end
+  if new_resource.nginx_site
+    include_recipe 'nginx'
+    service 'nginx' do
+      action :nothing
+    end
+    nginx_site new_resource.nginx_site do
+      enable false
+    end
+    execute "remove nginx site for #{new_resource.directory}" do
+      cwd node['nginx']['dir']
+      command "rm sites-available/#{new_resource.nginx_site}"
+    end
+  end
+  new_resource.updated_by_last_action(true)
 end

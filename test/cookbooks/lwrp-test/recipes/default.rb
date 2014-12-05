@@ -33,3 +33,12 @@ devpi_server '/opt/devpi/nginx-enabled' do
   nginx_site 'devpi'
   port 3144
 end
+
+devpi_server '/opt/devpi/should-not-exist' do
+  nginx_site 'should-be-removed'
+end
+
+devpi_server '/opt/devpi/should-not-exist' do
+  nginx_site 'should-be-removed'
+  action :delete
+end
