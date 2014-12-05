@@ -20,3 +20,6 @@ suites:
   run_list:
   - "recipe[devpi::client]"
   attributes: {}
+- name: lwrp
+  run_list:
+  - "recipe[lwrp-test]"
