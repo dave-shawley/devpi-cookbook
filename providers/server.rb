@@ -69,10 +69,10 @@ action :create do
     recursive true
   end
 
-  unless ::File.exists?(::File.join([data_dir, '.event_serial']))
-    command_root = %W[
-      #{new_resource.directory}/bin/devpi-server --serverdir "#{data_dir}"
-    ].join(' ')
+  command_root = %W(
+    #{new_resource.directory}/bin/devpi-server --serverdir "#{data_dir}"
+  ).join(' ')
+  unless ::File.exist?(::File.join([data_dir, '.event_serial']))
     execute 'start devpi-server' do
       cwd new_resource.directory
       command "#{command_root} --port #{new_resource.port} --start"
