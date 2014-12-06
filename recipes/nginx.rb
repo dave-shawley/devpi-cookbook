@@ -19,22 +19,16 @@
 
 include_recipe 'nginx::package'
 
+devpi_nginx_site 'devpi-server' do
+  directory node['devpiserver']['virtualenv']
+  data_directory node['devpiserver']['server_root']
+  port node['devpiserver']['server_port']
+  daemon_user node['devpiserver']['daemon_user']
+  admin_group node['devpiserver']['admin_group']
+end
+
 nginx_site 'default' do
   enable false
 end
 
-template "#{node['nginx']['dir']}/sites-available/devpi-server" do
-  source 'nginx-config.erb'
-  notifies :start, 'service[nginx]'
-end
-
 directory '/var/log/devpi-server'
-
-nginx_site 'devpi-server' do
-  enable true
-end
-
-service 'start nginx' do
-  service_name 'nginx'
-  action :start
-end
