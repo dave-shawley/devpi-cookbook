@@ -35,5 +35,3 @@ end
 service 'nginx' do
   action :start
 end
-
-directory '/var/log/devpi-server'

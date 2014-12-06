@@ -7,6 +7,8 @@ This file is used to list changes made in each version of the devpi cookbook.
 - Switch attribute access from symbols to strings.
 - Remove runit and supervisor recipes.
 - Add `devpi_server` and `devpi_nginx_site` LWRPs.
+- Remove log directory management.  The generated nginx configuration does
+  not provide a means to configure this.
 
 ## 1.1.0 (Never Released)
 - Add the *client* recipe that installs the `devpi` command line utility.

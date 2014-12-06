@@ -62,12 +62,6 @@ Index.
     <td>Install Python virtual environment here</td>
     <td>/opt/devpi-server</td>
   </tr>
-  <tr>
-    <th><tt>['devpiserver']['log_directory']</tt></th>
-    <td>Path</td>
-    <td>Write server logs here</td>
-    <td>/var/log/devpi-server</td>
-  </tr>
 </table>
 
 ## Usage
@@ -163,13 +157,6 @@ using the normal syntax:
     <td>The directory used by the server to store the repository data.
       The default value for this attribute is a sub-directory of
       the server root named <i>data</i>.</td>
-  </tr>
-  <tr>
-    <td><tt>log_directory</tt></td>
-    <td>The directory that the server should write logs to.  If nginx
-      is enabled, then the nginx logs will also be configured to write
-      to this directory.  The default value for this attribute is
-      <i>/var/log/devpi-server</i>.</td>
   </tr>
   <tr>
     <td><tt>nginx_site</tt></td>

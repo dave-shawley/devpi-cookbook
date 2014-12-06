@@ -25,7 +25,6 @@ attribute :daemon_user, kind_of: String, default: 'devpi'
 attribute :admin_group, kind_of: String, default: 'devpi'
 attribute :port, kind_of: Integer, default: 3141
 attribute :data_directory, kind_of: String
-attribute :log_directory, kind_of: String, default: '/var/log/devpi-server'
 attribute :nginx_site, kind_of: [String, NilClass], default: nil
 attribute :version, kind_of: [String, NilClass], default: nil
 

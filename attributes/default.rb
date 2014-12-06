@@ -19,7 +19,6 @@
 
 default['devpiserver']['virtualenv'] = '/opt/devpi-server'
 default['devpiserver']['server_root'] = '/opt/devpi-server/data'
-default['devpiserver']['log_directory'] = '/var/log/devpi-server'
 default['devpiserver']['server_port'] = 3141
 default['devpiserver']['version'] = nil  # install latest
 default['devpiserver']['daemon_user'] = 'devpi'
