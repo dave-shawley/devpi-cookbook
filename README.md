@@ -185,6 +185,65 @@ using the normal syntax:
   </tr>
 </table>
 
+### devpi\_nginx_site
+This resource uses the `devpi-server` command to generate an nginx site for
+the server and optionally enable it.
+
+#### Syntax
+The root directory of the server installation is the only required parameter.
+
+    devpi_nginx_site 'devpi' do
+      directory '/opt/devpi'
+    end
+
+This will create and enable an nginx site named *devpi* for the server that
+is installed in the */opt/devpi* virtual environment.
+
+#### Actions
+<table>
+  <tr><th>Action</th><th>Description</th></tr>
+  <tr>
+    <td><tt>:create</tt></td>
+    <td>Generate and optionally install the nginx configuration.</td>
+  </tr>
+</table>
+
+#### Attributes
+<table>
+  <tr><th>Attribute</th><th>Description</th></tr>
+  <tr>
+    <td><tt>directory</tt></td>
+    <td>Generate the site for the devpi server installed in this
+      directory.</td>
+  </tr>
+  <tr>
+    <td><tt>daemon_user</tt></td>
+    <td>The user that will run the daemon.  The default value for this
+      attribute is <i>devpi</i>.</td>
+  </tr>
+  <tr>
+    <td><tt>admin_group</tt></td>
+    <td>The user group responsible for managing the devpi server.
+      The default value for this attribute is <i>devpi</i>.</td>
+  </tr>
+  <tr>
+    <td><tt>port</tt></td>
+    <td>The port that the devpi server listens on.  The
+      default value for this attribute is <i>3141</i>.</td>
+  </tr>
+  <tr>
+    <td><tt>data_directory</tt></td>
+    <td>The directory used by the server to store the repository data.
+      The default value for this attribute is a sub-directory of
+      the server root named <i>data</i>.</td>
+  </tr>
+  <tr>
+    <td><tt>enable</tt></td>
+    <td>Boolean flag that controls whether the site is enabled or not.
+      By default, the site will be enabled.</td>
+  </tr>
+</table>
+
 ## Contributing
 
 1. Fork the repository on Github
