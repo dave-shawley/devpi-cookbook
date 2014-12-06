@@ -29,6 +29,11 @@ end
 
 nginx_site 'default' do
   enable false
+  notifies :reload, :start, 'service[nginx]', :delayed
+end
+
+service 'nginx' do
+  action :start
 end
 
 directory '/var/log/devpi-server'
