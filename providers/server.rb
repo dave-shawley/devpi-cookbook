@@ -28,60 +28,65 @@ use_inline_resources if defined? use_inline_resources
 action :create do
   include_recipe 'python'
 
-  directory new_resource.directory do
+  root_directory = new_resource.directory
+  data_directory = new_resource.data_directory || ::File.join([
+    root_directory, 'data'])
+  port = new_resource.port
+  daemon_user = new_resource.daemon_user
+  admin_group = new_resource.admin_group
+
+  directory root_directory do
     action :create
     recursive true
   end
 
-  python_virtualenv new_resource.directory do
+  python_virtualenv root_directory do
     action :create
   end
 
   python_pip 'devpi-server' do
-    virtualenv new_resource.directory
+    virtualenv root_directory
     version new_resource.version unless new_resource.version.nil?
   end
 
-  user "Daemon user for #{new_resource.directory}" do
-    username new_resource.daemon_user
+  user "Daemon user for #{root_directory}" do
+    username daemon_user
     gid 'daemon'
-    home new_resource.directory
+    home root_directory
     comment 'Dev-pi Server privilege separation user'
     shell '/bin/false'
     system true
     action :create
-    not_if "id #{new_resource.daemon_user}"
+    not_if "id #{daemon_user}"
   end
 
-  group "Admin group for #{new_resource.directory}" do
-    group_name new_resource.admin_group
+  group "Admin group for #{root_directory}" do
+    group_name admin_group
     system true
     action :create
   end
 
-  data_dir = new_resource.data_directory || ::File.join([
-    new_resource.directory, 'data'])
-  directory data_dir do
+  directory data_directory do
     action :create
-    owner new_resource.daemon_user
-    group new_resource.admin_group
+    owner daemon_user
+    group admin_group
     mode 00770
     recursive true
   end
 
   command_root = %W(
-    #{new_resource.directory}/bin/devpi-server --serverdir "#{data_dir}"
+    #{root_directory}/bin/devpi-server --serverdir "#{data_directory}"
   ).join(' ')
-  unless ::File.exist?(::File.join([data_dir, '.event_serial']))
+  unless ::File.exist?(::File.join([data_directory, '.event_serial']))
     execute 'start devpi-server' do
-      cwd new_resource.directory
-      command "#{command_root} --port #{new_resource.port} --start"
-      user new_resource.daemon_user
+      cwd root_directory
+      command "#{command_root} --port #{port} --start"
+      user daemon_user
     end
     execute 'stop devpi-server' do
-      cwd new_resource.directory
+      cwd root_directory
       command "#{command_root} --stop"
-      user new_resource.daemon_user
+      user daemon_user
     end
   end
 
@@ -90,28 +95,16 @@ action :create do
     service 'nginx' do
       action :nothing
     end
-    execute "generate #{new_resource.nginx_site}" do
-      cwd '/tmp'
-      command "#{command_root} --port #{new_resource.port} --gen-config"
-    end
-    execute "install #{new_resource.nginx_site}" do
-      cwd '/tmp'
-      command %W(
-        install
-        -o root -g #{new_resource.admin_group} -m 0664
-        /tmp/gen-config/nginx-devpi.conf
-        #{node['nginx']['dir']}/sites-available/#{new_resource.nginx_site}
-      ).join(' ')
-    end
-    directory "remove #{new_resource.nginx_site} temp config" do
-      path '/tmp/gen-config'
-      action :delete
-      recursive true
+    devpi_nginx_site new_resource.nginx_site do
+      directory root_directory
+      data_directory data_directory
+      port port
+      daemon_user daemon_user
+      admin_group admin_group
     end
     nginx_site 'default' do
       enable false
     end
-    nginx_site new_resource.nginx_site
   end
 
   new_resource.updated_by_last_action(true)
