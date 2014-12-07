@@ -37,7 +37,7 @@ action :create do
     cwd '/tmp'
     code <<-EOC
       #{new_resource.directory}/bin/devpi-server \
-        --serverdir #{data_dir} \
+        --serverdir #{data_dir} --outside-url='http://#{node['fqdn']}:80/' \
         --port #{new_resource.port} --gen-config
       install -o root -g #{new_resource.admin_group} -m 0664 \
         gen-config/nginx-devpi.conf \
