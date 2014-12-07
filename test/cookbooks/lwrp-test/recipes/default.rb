@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: devpi
-# Recipe:: nginx
+# Cookbook Name:: lwrp-test
+# Recipe:: default
 #
-# Copyright 2013-2014, Dave Shawley
+# Copyright 2014, Dave Shawley
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,21 +17,28 @@
 # limitations under the License.
 #
 
-include_recipe 'nginx::package'
+devpi_server '/opt/devpi/default-server'
 
-devpi_nginx_site 'devpi-server' do
-  directory node['devpiserver']['virtualenv']
-  data_directory node['devpiserver']['server_root']
-  port node['devpiserver']['server_port']
-  daemon_user node['devpiserver']['daemon_user']
-  admin_group node['devpiserver']['admin_group']
+devpi_server '/opt/devpi/devpi-server-2.0.0' do
+  version '2.0.0'
+  port 3142
 end
 
-nginx_site 'default' do
-  enable false
-  notifies :reload, :start, 'service[nginx]', :delayed
+devpi_server '/opt/devpi/external-data-server' do
+  data_directory '/opt/devpi/data'
+  port 3143
 end
 
-service 'nginx' do
-  action :start
+devpi_server '/opt/devpi/nginx-enabled' do
+  nginx_site 'devpi'
+  port 3144
+end
+
+devpi_server '/opt/devpi/should-not-exist' do
+  nginx_site 'should-be-removed'
+end
+
+devpi_server '/opt/devpi/should-not-exist' do
+  nginx_site 'should-be-removed'
+  action :delete
 end

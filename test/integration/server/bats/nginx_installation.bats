@@ -10,9 +10,6 @@
 	pid=$(ps -A -opid,command | awk '$2 ~ /^nginx/ { print $1 }')
 	test -n "$pid"
 }
-@test "nginx log directory exists" {
-	test -d /var/log/devpi-server
-}
 @test "devpi-server is available on port 80" {
 	SITE_FILE=/etc/nginx/sites-enabled/devpi-server
 	HOST=$(awk '/server_name/ { print $2 }' $SITE_FILE | tr -d ';')

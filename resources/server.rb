@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: devpi
-# Attribute Set:: defaults
+# Resource:: devpi_server
 #
 # Copyright 2013-2014, Dave Shawley
 #
@@ -17,9 +17,15 @@
 # limitations under the License.
 #
 
-default['devpiserver']['virtualenv'] = '/opt/devpi-server'
-default['devpiserver']['server_root'] = '/opt/devpi-server/data'
-default['devpiserver']['server_port'] = 3141
-default['devpiserver']['version'] = nil  # install latest
-default['devpiserver']['daemon_user'] = 'devpi'
-default['devpiserver']['admin_group'] = 'devpi'
+actions :create, :delete
+default_action :create
+
+attribute :directory, kind_of: String, name_attribute: true
+attribute :daemon_user, kind_of: String, default: 'devpi'
+attribute :admin_group, kind_of: String, default: 'devpi'
+attribute :port, kind_of: Integer, default: 3141
+attribute :data_directory, kind_of: String
+attribute :nginx_site, kind_of: [String, NilClass], default: nil
+attribute :version, kind_of: [String, NilClass], default: nil
+
+state_attrs :version, :directory

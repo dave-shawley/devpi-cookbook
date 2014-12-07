@@ -3,6 +3,8 @@ DEPENDENCIES
   devpi
     path: .
     metadata: true
+  lwrp-test
+    path: test/cookbooks/lwrp-test
   nginx
   supervisor
   supervisor-daemon
@@ -16,6 +18,8 @@ GRAPH
   devpi (2.0.0)
     nginx (>= 0.0.0)
     python (>= 0.0.0)
+  lwrp-test (0.1.0)
+    devpi (>= 0.0.0)
   nginx (2.7.4)
     apt (~> 2.2)
     bluepill (~> 2.3)
