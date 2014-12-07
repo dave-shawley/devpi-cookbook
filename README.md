@@ -231,6 +231,11 @@ is installed in the */opt/devpi* virtual environment.
   </tr>
 </table>
 
+### Vagrantfile
+Though not a usage of the cookbook per-se, the *Vagrantfile* can be used
+to start a stand-alone devpi-server instance.  **vagrant up** will start
+the server and make it available at <http://172.16.0.11/>.
+
 ## Contributing
 
 1. Fork the repository on Github
