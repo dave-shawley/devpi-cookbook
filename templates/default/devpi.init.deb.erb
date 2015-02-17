@@ -1,0 +1,72 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:    <%= @name %>
+# Required-Start:  $time $network $remote_fs $syslog
+# Required-Stop:   $time $network $remote_fs $syslog
+# Default-Start:    2 3 4 5
+# Default-Stop:     0 1 6
+# Short-Description:    <%= @name %>
+### END INIT INFO
+
+cd /etc
+. /lib/lsb/init-functions
+NAME=<%= @name %>
+if [ -f /etc/default/$NAME ]; then
+    source /etc/default/$NAME
+fi
+
+devpi='<%=::File.join(node['devpiserver']['virtualenv'], 'bin/devpi-server')%>'
+serverdir='<%=node['devpiserver']['server_root']%>'
+port=<%=node['devpiserver']['server_port']%>
+user='<%=node['devpiserver']['daemon_user']%>'
+group='<%=node['devpiserver']['admin_group']%>'
+
+PIDFILE="/var/run/<%= @name %>.pid"
+
+RUNCMD="${devpi} --serverdir ${serverdir} --port ${port}"
+
+
+do_start() {
+    start-stop-daemon --start -m -b -p $PIDFILE --oknodo \
+        --chuid ${user}:${group} -u ${user} -g ${group} -v \
+        --exec /bin/bash -- -c "$RUNCMD"
+}
+
+do_stop() {
+    killproc -p $PIDFILE
+}
+
+do_status() {
+    status_of_proc -p $PIDFILE
+}
+
+case "$1" in
+  start)
+    log_daemon_msg "Starting $NAME" "$NAME"
+    do_start
+    log_end_msg 0
+    ;;
+  stop)
+    log_daemon_msg "Stopping $NAME" "$NAME"
+    do_stop
+    log_end_msg 0
+    ;;
+
+  restart|reload|force-reload|try-restart)
+    log_daemon_msg "Restarting $NAME" "$NAME"
+    do_stop
+    do_start
+    log_end_msg 0
+    ;;
+
+  status)
+    log_daemon_msg "Status $NAME" "$NAME"
+    do_status
+    log_end_msg 0
+    ;;
+
+  *)
+    log_action_msg "Usage: /etc/init.d/$NAME {start|stop|reload|force-reload|restart|try-restart|status}"
+    exit 1
+esac

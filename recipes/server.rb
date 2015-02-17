@@ -53,3 +53,25 @@ directory 'devpi-server directory' do
   group node['devpiserver']['admin_group']
   mode 00770
 end
+
+if platform_family?('rhel')
+  initd_template='devpi.init.el.erb'
+elsif platform_family?('debian')
+  initd_template='devpi.init.deb.erb'
+else
+  fatal "Unsupported platform"
+end
+
+template '/etc/init.d/devpi' do
+  source initd_template
+  owner 'root'
+  group 'root'
+  mode '0755'
+  variables(:name => 'devpi')
+  notifies :restart, 'service[devpi]'
+end
+
+service 'devpi' do
+  supports :restart => true, :status => true, :reload => false
+  action [:enable, :start]
+end
