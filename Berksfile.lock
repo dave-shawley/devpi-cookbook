@@ -6,9 +6,6 @@ DEPENDENCIES
   lwrp-test
     path: test/cookbooks/lwrp-test
   nginx
-  supervisor
-  supervisor-daemon
-    path: test/cookbooks/supervisor-daemon
 
 GRAPH
   apt (2.6.0)
@@ -31,15 +28,11 @@ GRAPH
   python (1.4.6)
     build-essential (>= 0.0.0)
     yum-epel (>= 0.0.0)
-  rsyslog (1.12.2)
+  rsyslog (1.14.0)
   runit (1.5.10)
     build-essential (>= 0.0.0)
     yum (~> 3.0)
     yum-epel (>= 0.0.0)
-  supervisor (0.4.12)
-    python (>= 0.0.0)
-  supervisor-daemon (0.2.0)
-    supervisor (>= 0.0.0)
   yum (3.5.1)
-  yum-epel (0.5.3)
+  yum-epel (0.6.0)
     yum (~> 3.0)

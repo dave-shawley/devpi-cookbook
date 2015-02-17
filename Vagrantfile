@@ -18,7 +18,6 @@ Vagrant.configure('2') do |config|
       'recipe[devpi::server]',
       'recipe[devpi::nginx]',
       'recipe[devpi::client]',
-      'recipe[supervisor-daemon::install]'
     ]
   end
 
