@@ -1,0 +1,78 @@
+#!/bin/sh
+#
+# chkconfig: - 90 60
+# config: /etc/default/<%= @name %>
+#
+### BEGIN INIT INFO
+# Provides: <%= @name %>
+# Required-Start: $local_fs $remote_fs $network $named
+# Required-Stop: $local_fs $remote_fs $network
+# Short-Description: run <%= @name %> daemon
+# Description: <%= @name %> 
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+NAME=<%= @name %>
+
+if [ -f /etc/default/$NAME ]; then
+    . /etc/default/$NAME
+fi
+
+RETVAL=0
+prog=$NAME
+user=$NAME
+devpi='<%=::File.join(node['devpiserver']['virtualenv'], 'bin/devpi-server')%>'
+serverdir='<%=node['devpiserver']['server_root']%>'
+port=<%=node['devpiserver']['server_port']%>
+user='<%=node['devpiserver']['daemon_user']%>'
+group='<%=node['devpiserver']['admin_group']%>'
+
+start_cmd="${devpi} --serverdir ${serverdir} --port ${port} --start"
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon --user=$user "$start_cmd"
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc ${devpi}
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+}
+
+status() {
+    status ${devpi}
+}
+
+restart() {
+  stop
+  start
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  status)
+        status
+        RETVAL=$?
+        ;;
+  restart|force-reload|reload)
+        restart
+        ;;
+  *)
+        echo $"Usage: $prog {start|stop|restart|force-reload|reload|status}"
+        RETVAL=2
+esac
+
+exit $RETVAL
