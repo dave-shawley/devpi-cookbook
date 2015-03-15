@@ -1,3 +1,21 @@
+http_get() {
+	if test -z "$HTTP_PROGRAM"
+	then
+		if which curl > /dev/null 2>&1
+		then
+			HTTP_PROGRAM="curl -o"
+		else
+			if which wget > /dev/null 2>&1
+			then
+				HTTP_PROGRAM="wget -O"
+			else
+				echo "*** Please make sure either wget or curl exist"
+				exit 1
+			fi
+		fi
+	fi
+	$HTTP_PROGRAM $@
+}
 @test "nginx is installed" {
 	PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin
 	test -n "$(which nginx)"
@@ -13,8 +31,8 @@
 @test "devpi-server is available on port 80" {
 	SITE_FILE=/etc/nginx/sites-enabled/devpi-server
 	HOST=$(awk '/server_name/ { print $2 }' $SITE_FILE | tr -d ';')
-	wget -O /tmp/devpi-out http://localhost:3141
-	wget -O /tmp/nginx-out http://$HOST:80
+	http_get /tmp/devpi-out http://localhost:3141
+	http_get /tmp/nginx-out http://$HOST:80
 	diff /tmp/devpi-out /tmp/nginx-out
 	rm /tmp/devpi-out /tmp/nginx-out
 }
