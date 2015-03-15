@@ -26,8 +26,6 @@ end
 use_inline_resources if defined? use_inline_resources
 
 action :create do
-  include_recipe 'python'
-
   root_directory = new_resource.directory
   data_directory = new_resource.data_directory || ::File.join([
     root_directory, 'data'])
@@ -40,7 +38,8 @@ action :create do
     recursive true
   end
 
-  python_virtualenv root_directory do
+  python_virtualenv "Virtualenv: #{root_directory}" do
+    path root_directory
     action :create
   end
 
