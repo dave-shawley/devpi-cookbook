@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the devpi cookbook.
 
+## 2.1.0
+- Remove the daemon user from the administrative group.  This was oversight
+  in the server recipe since the admin group is likely to be more privileged
+  than the daemon user should be.
 ## 2.0.0
 - Fully embrace ChefDK for development.
 - Switch attribute access from symbols to strings.
