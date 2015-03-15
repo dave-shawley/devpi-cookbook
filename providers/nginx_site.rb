@@ -2,7 +2,7 @@
 # Cookbook Name:: devpi
 # Provider:: devpi_nginx_site
 #
-# Copyright 2013-2014, Dave Shawley
+# Copyright 2013-2015, Dave Shawley
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,17 +47,7 @@ action :create do
       chgrp -R #{new_resource.admin_group} #{data_dir}
     EOC
   end
-  bash "fix nginx config for #{new_resource.name}" do
-    cwd "#{node['nginx']['dir']}/sites-available"
-    code <<-EOC
-    sed -i -e '\
-      s/server_name #{node['fqdn']};/server_name $hostname "";/; \
-      s/#dynamic: proxy_set_header/proxy_set_header/; \
-      /proxy_set_header  X-outside-url/d; \
-    ' devpi-server
-    EOC
-    notifies :reload, 'service[nginx]'
-  end
+
   if new_resource.enable
     nginx_site new_resource.name do
       enable true
