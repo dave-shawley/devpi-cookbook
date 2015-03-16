@@ -6,6 +6,8 @@ DEPENDENCIES
   lwrp-test
     path: test/cookbooks/lwrp-test
   nginx
+  replica-test
+    path: test/cookbooks/replica-test
   supervisor
   supervisor-daemon
     path: test/cookbooks/supervisor-daemon
@@ -15,7 +17,7 @@ GRAPH
   bluepill (2.3.1)
     rsyslog (>= 0.0.0)
   build-essential (2.1.3)
-  devpi (2.0.0)
+  devpi (2.1.0)
     nginx (>= 0.0.0)
     python (>= 0.0.0)
   lwrp-test (0.1.0)
@@ -31,6 +33,9 @@ GRAPH
   python (1.4.6)
     build-essential (>= 0.0.0)
     yum-epel (>= 0.0.0)
+  replica-test (0.1.0)
+    devpi (>= 0.0.0)
+    supervisor (>= 0.0.0)
   rsyslog (1.12.2)
   runit (1.5.10)
     build-essential (>= 0.0.0)
