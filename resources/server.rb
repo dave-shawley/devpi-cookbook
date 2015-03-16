@@ -27,5 +27,6 @@ attribute :port, kind_of: Integer, default: 3141
 attribute :data_directory, kind_of: String
 attribute :nginx_site, kind_of: [String, NilClass], default: nil
 attribute :version, kind_of: [String, NilClass], default: nil
+attribute :replicate, kind_of: [String, NilClass], default: nil
 
 state_attrs :version, :directory

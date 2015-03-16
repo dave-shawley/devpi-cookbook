@@ -21,6 +21,7 @@ include_recipe 'supervisor'
 
 devpi_server '/opt/devpi/slave' do
   port 3143
+  replicate 'http://localhost:3142'
 end
 
 supervisor_service 'devpi-replica' do

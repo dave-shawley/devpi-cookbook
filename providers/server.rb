@@ -75,7 +75,12 @@ action :create do
 
   command_root = %W(
     #{root_directory}/bin/devpi-server --serverdir "#{data_directory}"
-  ).join(' ')
+  )
+  if new_resource.replicate
+    command_root << ['--role', 'replica', '--master', new_resource.replicate]
+  end
+
+  command_root = command_root.flatten.join(' ')
   unless ::File.exist?(::File.join([data_directory, '.event_serial']))
     execute 'start devpi-server' do
       cwd root_directory
