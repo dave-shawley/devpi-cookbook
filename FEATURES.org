@@ -37,7 +37,8 @@ this file is -- /a list of things that need do'ing/.
   [X] Remove git-flow nonsense
   [X] Add nginx configuration LWRP
 
-* Version 2.1 [0/3]
-  [ ] Add `devpi_slave` LWRP
+* Version 2.1 [1/4]
+  [X] Add `replicate` option to devpi_server LWRP
+  [ ] Add `devpi_service` LWRP
   [ ] Add `devpi_user` LWRP
   [ ] Add `devpi_index` LWRP

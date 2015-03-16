@@ -89,7 +89,7 @@ create a workstation from which you can manage a devpi-server installation.
 
 [nginx]: http://nginx.org/
 
-### devpi_server
+### devpi\_server
 This resource defines a complete installation of the [devpi server].  It will
 create the Python virtual environment, install the packages/users/groups
 needed to run the server, and even generate an nginx site definition for you.
@@ -170,9 +170,16 @@ using the normal syntax:
       package will be installed.  If this is omitted or set to
       <tt>nil</tt>, then the most recent package will be installed.</td>
   </tr>
+  <tr>
+    <td><tt>replicate</tt></td>
+    <td>If this attribute is set, then the server will be installed
+      as a replica of the specified master URL.  If this is omitted or
+      set to <tt>nil</tt>, then the server will be installed as a
+      master.</td>
+  </tr>
 </table>
 
-### devpi\_nginx_site
+### devpi\_nginx\_site
 This resource uses the `devpi-server` command to generate an nginx site for
 the server and optionally enable it.
 
@@ -265,7 +272,7 @@ the server and make it available at <http://172.16.0.11/>.
 
 ### License:
 
-Copyright (C) 2013-2014 Dave Shawley
+Copyright (C) 2013-2015 Dave Shawley
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
