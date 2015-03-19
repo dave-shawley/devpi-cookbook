@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# bootstrap-devpi - Bootstrap the devpi-server instance.
+#
+
+server_root=$1
+shift
+if test -z "$1"
+then
+  echo "Usage: $0 SERVER-ROOT ARGS"
+  exit 64
+fi
+
+clean_exit() {
+  pid=`ps -e -opid,command | grep [d]evpi-server | awk '{print $1}'`
+  if test -n "$pid"
+  then
+    kill -INT $pid
+  fi
+}
+
+(sleep 10 && echo "TIMEOUT" && clean_exit) &
+alarm_pid=$!
+
+set -e
+$server_root/bin/devpi-server "$@" 2>&1 | while
+  read line
+do
+  if echo $line | grep -qi 'hit ctrl-c to quit' -
+  then
+    pid=`ps -e -opid,command | grep [d]evpi-server | awk '{print $1}'`
+    kill -KILL $alarm_pid
+    clean_exit
+  fi
+done
