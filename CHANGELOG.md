@@ -14,6 +14,7 @@ This file is used to list changes made in each version of the devpi cookbook.
   in `Chef::DSL::IncludeRecipe`.  I'm not completely sure why... Pushing
   the `include_recipe` into the user works reliably.
 - Rewrite server recipe to use the `devpi_server` LWRP.
+- Add `replicate` option to the `devpi_server` LWRP.
 
 ## 2.0.0
 - Fully embrace ChefDK for development.

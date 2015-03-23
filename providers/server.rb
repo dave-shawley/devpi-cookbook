@@ -73,18 +73,20 @@ action :create do
     recursive true
   end
 
-  command_root = %W(
-    #{root_directory}/bin/devpi-server --serverdir "#{data_directory}"
-  ).join(' ')
+  cookbook_file 'bootstrap-devpi' do
+    path '/tmp/bootstrap-devpi'
+    cookbook 'devpi'
+    mode 00755
+  end
+
   unless ::File.exist?(::File.join([data_directory, '.event_serial']))
-    execute 'start devpi-server' do
-      cwd root_directory
-      command "#{command_root} --port #{port} --start"
-      user daemon_user
+    args = %W(--serverdir #{data_directory} --port #{port})
+    if new_resource.replicate
+      args << ['--role', 'replica', '--master', new_resource.replicate]
     end
-    execute 'stop devpi-server' do
+    execute "Bootstrap #{root_directory}" do
       cwd root_directory
-      command "#{command_root} --stop"
+      command "/tmp/bootstrap-devpi #{args.flatten}"
       user daemon_user
     end
   end
