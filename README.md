@@ -79,6 +79,10 @@ installed alongside the server.
 Include this recipe in the `run_list` to install the devpi server.  It
 will also create the daemon user and administrative group if necessary.
 
+### devpi::web
+Include this recipe in the `run_list` to install the devpi web interface.
+Not configuration is neccesary for this package.
+
 ### devpi::nginx
 Include this recipe to expose the devpi-server using [nginx] as a
 front-end server.

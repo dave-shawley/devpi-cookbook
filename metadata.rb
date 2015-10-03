@@ -15,3 +15,4 @@ end
 recipe 'devpi::server', 'Installs the devpi-server package.'
 recipe 'devpi::nginx', 'Configure nginx as an HTTP front-end.'
 recipe 'devpi::client', 'Install the devpi-client package.'
+recipe 'devpi::web', 'Install the devpi-web package.'
