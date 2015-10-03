@@ -27,3 +27,10 @@ suites:
   run_list:
   - "recipe[replica-test::master]"
   - "recipe[replica-test::replica]"
+- name: webinterface
+  run_list:
+  - "recipe[devpi::server]"
+  - "recipe[devpi::nginx]"
+  - "recipe[devpi::web]"
+  - "recipe[supervisor-daemon::install]"
+  attributes: {}
