@@ -1,8 +1,8 @@
 #
 # Cookbook Name:: devpi
-# Attribute Set:: defaults
+# Recipe:: web
 #
-# Copyright 2013-2015, Dave Shawley
+# Copyright 2015, Drew J. Sonne
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,11 +16,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
+include_recipe 'python'
 
-default['devpiserver']['virtualenv'] = '/opt/devpi-server'
-default['devpiserver']['server_root'] = '/opt/devpi-server/data'
-default['devpiserver']['server_port'] = 3141
-default['devpiserver']['version'] = nil  # install latest
-default['devpiserver']['daemon_user'] = 'devpi'
-default['devpiserver']['admin_group'] = 'devpi'
-default['devpiweb']['version'] = nil
+python_pip 'devpi-web' do
+    virtualenv node['devpiserver']['virtualenv']
+    version node['devpiweb']['version'] unless node['devpiweb']['version'].nil?
+end
